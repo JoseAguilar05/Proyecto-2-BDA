@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,7 +32,7 @@ public class Evento implements Serializable {
      * Identificador único del evento.
      */
     @Id
-    private String id;
+    private Integer id;
 
     /**
      * Título del evento.
@@ -79,6 +81,17 @@ public class Evento implements Serializable {
     private List<Actividad> actividades;
 
     /**
+     * Responsable del evento.
+     */
+    @ManyToOne
+    @JoinColumn(name = "id_responsable", nullable = false)
+    private Responsable responsable;
+
+    @ManyToOne
+    @JoinColumn(name = "id_lugar", nullable = false)
+    private Lugar lugar;
+
+    /**
      * Constructor por defecto.
      */
     public Evento() { }
@@ -94,7 +107,7 @@ public class Evento implements Serializable {
      * @param estado Estado del evento.
      * @param modalidad Modalidad del evento.
      */
-    public Evento(String id, String titulo, String descripcion, Calendar fechaInicio, Calendar fechaFin, EstadoEvento estado, ModalidadEvento modalidad) {
+    public Evento(Integer id, String titulo, String descripcion, Calendar fechaInicio, Calendar fechaFin, EstadoEvento estado, ModalidadEvento modalidad) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -109,7 +122,7 @@ public class Evento implements Serializable {
      * 
      * @return El identificador del evento.
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -118,7 +131,7 @@ public class Evento implements Serializable {
      * 
      * @param id El identificador del evento.
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -259,4 +272,41 @@ public class Evento implements Serializable {
             actividad.setEvento(this);
         }
     }
+
+    /**
+     * Obtiene el responsable del evento.
+     * 
+     * @return El responsable del evento.
+     */
+    public Responsable getResponsable() {
+        return responsable;
+    }
+
+    /**
+     * Establece el responsable del evento.
+     * 
+     * @param responsable El responsable del evento.
+     */
+    public void setResponsable(Responsable responsable) {
+        this.responsable = responsable;
+    }
+
+    /**
+     * Obtiene el lugar del evento.
+     * 
+     * @return El lugar del evento.
+     */
+    public Lugar getLugar() {
+        return lugar;
+    }
+
+    /**
+     * Establece el lugar del evento.
+     * 
+     * @param lugar El lugar del evento.
+     */
+    public void setLugar(Lugar lugar) {
+        this.lugar = lugar;
+    }
+
 }

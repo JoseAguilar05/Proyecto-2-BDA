@@ -24,7 +24,7 @@ public class Actividad {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Integer id;
 
     /**
      * Nombre de la actividad.
@@ -83,7 +83,7 @@ public class Actividad {
      * @param duracionEstimada Duración estimada de la actividad en minutos.
      * @param lugar Ubicación donde se llevará a cabo la actividad.
      */
-    public Actividad(String id, String nombre, String descripcion, String fechaInicio, Integer duracionEstimada, String lugar) {
+    public Actividad(Integer id, String nombre, String descripcion, String fechaInicio, Integer duracionEstimada, String lugar) {
         this.id = id;
         this.nombre = nombre;
         this.tipoActividad = descripcion;
@@ -97,7 +97,7 @@ public class Actividad {
      * 
      * @return El identificador de la actividad.
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -106,7 +106,7 @@ public class Actividad {
      * 
      * @param id El identificador de la actividad.
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

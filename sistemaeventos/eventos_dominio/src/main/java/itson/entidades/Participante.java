@@ -27,7 +27,7 @@ public class Participante implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_participante")
-    private String id;
+    private Integer id;
 
     /**
      * Nombre del participante.
@@ -101,7 +101,7 @@ public class Participante implements Serializable {
      * @param dependencia      Dependencia del participante.
      * @param numeroControl    Número de control del participante.
      */
-    public Participante(String id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo,
+    public Participante(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo,
             String telefono, TipoParticipante tipoParticipante, String dependencia, String numeroControl) {
         this.id = id;
         this.nombre = nombre;
@@ -121,7 +121,7 @@ public class Participante implements Serializable {
      * 
      * @return El identificador del participante.
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -130,7 +130,7 @@ public class Participante implements Serializable {
      * 
      * @param id El identificador del participante.
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
