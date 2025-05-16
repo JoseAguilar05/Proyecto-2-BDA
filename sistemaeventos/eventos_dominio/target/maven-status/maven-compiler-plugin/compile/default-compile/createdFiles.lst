@@ -1,1 +1,14 @@
-itson\Main.class
+itson\enums\ModalidadEvento.class
+itson\enums\EstadoEvento.class
+itson\dtos\ResponsableDTO.class
+itson\entidades\Responsable.class
+itson\dtos\LugarDTO.class
+itson\dtos\ParticipanteDTO.class
+itson\entidades\Actividad.class
+itson\dtos\ActividadDTO.class
+itson\enums\TipoResponsable.class
+itson\dtos\EventoDTO.class
+itson\entidades\Lugar.class
+itson\entidades\Participante.class
+itson\entidades\Evento.class
+itson\enums\TipoParticipante.class
