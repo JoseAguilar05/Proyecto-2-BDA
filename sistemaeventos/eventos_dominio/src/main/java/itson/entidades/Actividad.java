@@ -1,5 +1,6 @@
 package itson.entidades;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * Representa una actividad dentro de un evento.
@@ -41,8 +44,9 @@ public class Actividad {
     /**
      * Fecha y hora de inicio de la actividad.
      */
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_inicio")
-    private String fechaInicio;
+    private Calendar fechaInicio;
 
     /**
      * Duración estimada de la actividad en minutos.
@@ -83,7 +87,7 @@ public class Actividad {
      * @param duracionEstimada Duración estimada de la actividad en minutos.
      * @param lugar Ubicación donde se llevará a cabo la actividad.
      */
-    public Actividad(Integer id, String nombre, String descripcion, String fechaInicio, Integer duracionEstimada, String lugar) {
+    public Actividad(Integer id, String nombre, String descripcion, Calendar fechaInicio, Integer duracionEstimada, String lugar) {
         this.id = id;
         this.nombre = nombre;
         this.tipoActividad = descripcion;
@@ -151,7 +155,7 @@ public class Actividad {
      * 
      * @return La fecha y hora de inicio de la actividad.
      */
-    public String getFechaInicio() {
+    public Calendar getFechaInicio() {
         return fechaInicio;
     }
 
@@ -160,7 +164,7 @@ public class Actividad {
      * 
      * @param fechaInicio La fecha y hora de inicio de la actividad.
      */
-    public void setFechaInicio(String fechaInicio) {
+    public void setFechaInicio(Calendar fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 

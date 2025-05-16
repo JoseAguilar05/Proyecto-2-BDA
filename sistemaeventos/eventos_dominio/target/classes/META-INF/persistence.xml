@@ -2,6 +2,11 @@
 <persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
   <persistence-unit name="itson_eventos_dominio_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>itson.entidades.Actividad</class>
+    <class>itson.entidades.Evento</class>
+    <class>itson.entidades.Lugar</class>
+    <class>itson.entidades.Participante</class>
+    <class>itson.entidades.Responsable</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/eventosdb?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
@@ -12,6 +17,11 @@
   </persistence-unit>
   <persistence-unit name="itson_eventos_dominio_jar_1.0-SNAPSHOTPUTEST" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>itson.entidades.Actividad</class>
+    <class>itson.entidades.Evento</class>
+    <class>itson.entidades.Lugar</class>
+    <class>itson.entidades.Participante</class>
+    <class>itson.entidades.Responsable</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/eventosdb_test?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

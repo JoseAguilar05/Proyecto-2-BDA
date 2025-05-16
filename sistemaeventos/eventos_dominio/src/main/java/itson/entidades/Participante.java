@@ -54,12 +54,6 @@ public class Participante implements Serializable {
     private String correo;
 
     /**
-     * Teléfono del participante.
-     */
-    @Column(name = "telefono")
-    private String telefono;
-
-    /**
      * Tipo de participante (por ejemplo, estudiante, profesor, etc.).
      */
     @Column(name = "tipo_participante")
@@ -96,19 +90,17 @@ public class Participante implements Serializable {
      * @param apellidoPaterno  Apellido paterno del participante.
      * @param apellidoMaterno  Apellido materno del participante.
      * @param correo           Correo electrónico del participante.
-     * @param telefono         Teléfono del participante.
      * @param tipoParticipante Tipo de participante.
      * @param dependencia      Dependencia del participante.
      * @param numeroControl    Número de control del participante.
      */
     public Participante(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo,
-            String telefono, TipoParticipante tipoParticipante, String dependencia, String numeroControl) {
+            TipoParticipante tipoParticipante, String dependencia, String numeroControl) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.correo = correo;
-        this.telefono = telefono;
         this.tipoParticipante = tipoParticipante;
         this.dependencia = dependencia;
         this.numeroControl = numeroControl;
@@ -207,24 +199,6 @@ public class Participante implements Serializable {
     }
 
     /**
-     * Obtiene el teléfono del participante.
-     * 
-     * @return El teléfono del participante.
-     */
-    public String getTelefono() {
-        return telefono;
-    }
-
-    /**
-     * Establece el teléfono del participante.
-     * 
-     * @param telefono El teléfono del participante.
-     */
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    /**
      * Obtiene el tipo de participante.
      * 
      * @return El tipo de participante.
@@ -304,7 +278,7 @@ public class Participante implements Serializable {
     @Override
     public String toString() {
         return "Participante [id=" + id + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno
-                + ", apellidoMaterno=" + apellidoMaterno + ", correo=" + correo + ", telefono=" + telefono
+                + ", apellidoMaterno=" + apellidoMaterno + ", correo=" + correo
                 + ", tipoParticipante=" + tipoParticipante + ", dependencia=" + dependencia + ", numeroControl="
                 + numeroControl + "]";
     }

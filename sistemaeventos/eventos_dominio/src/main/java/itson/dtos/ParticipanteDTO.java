@@ -9,7 +9,6 @@ public class ParticipanteDTO {
     private String apellidoPaterno;
     private String apellidoMaterno;
     private String correo;
-    private String telefono;
     private TipoParticipante tipoParticipante;
     private String dependencia;
     private String numeroControl;
@@ -22,26 +21,44 @@ public class ParticipanteDTO {
      * @param apellidoPaterno El apellido paterno del participante.
      * @param apellidoMaterno El apellido materno del participante.
      * @param correo El correo electrónico del participante.
-     * @param telefono El número de teléfono del participante.
      * @param tipoParticipante El tipo de participante (Ejecutivo, Coordinador, etc.).
      * @param dependencia La dependencia a la que pertenece el participante.
      * @param numeroControl El número de control del participante (si aplica).
-     * @param actividadesIds Lista de identificadores de actividades en las que participa el participante.
      */
     public ParticipanteDTO(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String correo,
-            String telefono, TipoParticipante tipoParticipante, String dependencia, String numeroControl,
-            List<String> actividadesIds) {
+     TipoParticipante tipoParticipante, String dependencia, String numeroControl) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.correo = correo;
-        this.telefono = telefono;
         this.tipoParticipante = tipoParticipante;
         this.dependencia = dependencia;
         this.numeroControl = numeroControl;
-        this.actividadesIds = actividadesIds;
     }
+
+    /**
+     * Constructor de la clase ParticipanteDTO sin Id.
+     * @param nombre El nombre del participante.
+     * @param apellidoPaterno El apellido paterno del participante.
+     * @param apellidoMaterno El apellido materno del participante.
+     * @param correo El correo electrónico del participante.
+     * @param tipoParticipante El tipo de participante (Ejecutivo, Coordinador, etc.).
+     * @param dependencia La dependencia a la que pertenece el participante.
+     * @param numeroControl El número de control del participante (si aplica).
+     */
+    public ParticipanteDTO( String nombre, String apellidoPaterno, String apellidoMaterno, String correo,
+            TipoParticipante tipoParticipante, String dependencia, String numeroControl){ 
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.correo = correo;
+        this.tipoParticipante = tipoParticipante;
+        this.dependencia = dependencia;
+        this.numeroControl = numeroControl;
+    }
+
+
 
     public Integer getId() {
         return id;
@@ -61,10 +78,6 @@ public class ParticipanteDTO {
 
     public String getCorreo() {
         return correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
     }
 
     public TipoParticipante getTipoParticipante() {
