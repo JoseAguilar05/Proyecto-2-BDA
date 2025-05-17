@@ -13,9 +13,13 @@ public interface IParticipantesDAO {
 
     ParticipanteDTO obtenerParticipantePorId(Integer id) throws SeguridadException;
     
+    List<ParticipanteDTO> obtenerParticipantes() throws SeguridadException;
+
     List<ParticipanteDTO> obtenerParticipantesConFiltro(String filtro) throws SeguridadException;
 
     List<ParticipanteDTO> obtenerParticipantesConFiltroYTipo(String filtro, TipoParticipante tipo) throws SeguridadException;
+
+    List<ParticipanteDTO> obtenerParticipantesPorTipo(TipoParticipante tipo) throws SeguridadException;
 
     boolean eliminarParticipante(Integer id) ;
 

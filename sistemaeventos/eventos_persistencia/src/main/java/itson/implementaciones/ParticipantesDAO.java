@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -217,6 +216,56 @@ public class ParticipantesDAO implements IParticipantesDAO {
             }
             entityManager.close();
         }
+    }
+
+    @Override
+    public List<ParticipanteDTO> obtenerParticipantes() throws SeguridadException {
+        EntityManager entityManager = ManejadorConexiones.obtenerConexion();
+        entityManager.getTransaction().begin();
+        TypedQuery<Participante> query = entityManager.createQuery("SELECT p FROM Participante p", Participante.class);
+        List<Participante> resultados = query.getResultList();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
+        List<ParticipanteDTO> participantesDTO = new ArrayList<>();
+        for (Participante participante : resultados) {
+            if (participante.getNumeroControl() != null) {
+                participante.setNumeroControl(Seguridad.desencriptar(participante.getNumeroControl()));
+            }
+            participante.setCorreo(Seguridad.desencriptar(participante.getCorreo()));
+            participantesDTO.add(new ParticipanteDTO(participante.getId(), participante.getNombre(),
+                    participante.getApellidoPaterno(),
+                    participante.getApellidoMaterno(), participante.getCorreo(),
+                    participante.getTipoParticipante(), participante.getDependencia(),
+                    participante.getNumeroControl()));
+        }
+        return participantesDTO;
+    }
+
+    @Override
+    public List<ParticipanteDTO> obtenerParticipantesPorTipo(TipoParticipante tipo) throws SeguridadException {
+        EntityManager entityManager = ManejadorConexiones.obtenerConexion();
+        entityManager.getTransaction().begin();
+        TypedQuery<Participante> query = entityManager.createQuery("SELECT p FROM Participante p WHERE p.tipoParticipante = :tipo",
+                Participante.class);
+        query.setParameter("tipo", tipo);
+        List<Participante> resultados = query.getResultList();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+
+        List<ParticipanteDTO> participantesDTO = new ArrayList<>();
+        for (Participante participante : resultados) {
+            if (participante.getNumeroControl() != null) {
+                participante.setNumeroControl(Seguridad.desencriptar(participante.getNumeroControl()));
+            }
+            participante.setCorreo(Seguridad.desencriptar(participante.getCorreo()));
+            participantesDTO.add(new ParticipanteDTO(participante.getId(), participante.getNombre(),
+                    participante.getApellidoPaterno(),
+                    participante.getApellidoMaterno(), participante.getCorreo(),
+                    participante.getTipoParticipante(), participante.getDependencia(),
+                    participante.getNumeroControl()));
+        }
+        return participantesDTO;
     }
 
 }

@@ -1,1 +1,4 @@
-itson\Main.class
+itson\interfaces\IParticipantesBO.class
+itson\excepciones\NegocioException.class
+itson\implementaciones\ParticipantesBO.class
+itson\fabrica\ObjetosNegocioFactory.class
