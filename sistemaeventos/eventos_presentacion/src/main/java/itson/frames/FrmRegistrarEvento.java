@@ -2,15 +2,20 @@ package itson.frames;
 
 import itson.control.ControlFlujo;
 import itson.control.Formateador;
+import itson.dtos.ActividadDTO;
 import itson.dtos.ResponsableDTO;
 import itson.enums.ModalidadEvento;
 import itson.modales.DlgSeleccionarOrganizador;
 
 import java.awt.Font;
+import java.util.List;
+
+import javax.swing.JOptionPane;
 
 public class FrmRegistrarEvento extends javax.swing.JFrame {
 
     private ResponsableDTO responsableSeleccionado;
+    private List<ActividadDTO> actividades;
 
     public FrmRegistrarEvento() {
         initComponents();
@@ -38,7 +43,7 @@ public class FrmRegistrarEvento extends javax.swing.JFrame {
         comboBoxModalidad = new javax.swing.JComboBox<>();
         lblNombre1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtDescripcion = new javax.swing.JTextArea();
         lblNombre5 = new javax.swing.JLabel();
         fechaFin = new com.github.lgooddatepicker.components.DatePicker();
         fechaInicio = new com.github.lgooddatepicker.components.DatePicker();
@@ -66,11 +71,11 @@ public class FrmRegistrarEvento extends javax.swing.JFrame {
             }
         });
 
-        btnRegistrar.setText("Registrar Evento");
         btnRegistrar.setBackground(new java.awt.Color(25, 118, 210));
-        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrar.setFont(new Font("Inter", Font.PLAIN, 18));
         btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setText("Registrar Evento");
+        btnRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -100,11 +105,11 @@ public class FrmRegistrarEvento extends javax.swing.JFrame {
         lblNombre1.setFont(new Font("Inter", Font.PLAIN, 16));
         lblNombre1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTextArea1.setBackground(new java.awt.Color(244, 246, 247));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new Font("Inter", Font.PLAIN, 16));
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtDescripcion.setColumns(20);
+        txtDescripcion.setFont(new Font("Inter", Font.PLAIN, 16));
+        txtDescripcion.setRows(5);
+        txtDescripcion.setBackground(new java.awt.Color(244, 246, 247));
+        jScrollPane1.setViewportView(txtDescripcion);
 
         lblNombre5.setText("Fecha de Inicio");
         lblNombre5.setFont(new Font("Inter", Font.PLAIN, 16));
@@ -215,7 +220,7 @@ public class FrmRegistrarEvento extends javax.swing.JFrame {
                                 .addComponent(fechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(fechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblOrganizador, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscarOrganizador, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregarActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -225,7 +230,7 @@ public class FrmRegistrarEvento extends javax.swing.JFrame {
                     .addComponent(lblNombre8, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBoxModalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -282,7 +287,12 @@ public class FrmRegistrarEvento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverMouseClicked
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-
+        if (validarCampos()) {
+            // Aquí se puede agregar la lógica para registrar el evento
+            JOptionPane.showMessageDialog(this, "Evento registrado exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            ControlFlujo.mostrarFrame(new FrmEventos());
+            this.dispose();
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarOrganizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarOrganizadorActionPerformed
@@ -294,9 +304,40 @@ public class FrmRegistrarEvento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarOrganizadorActionPerformed
 
     private void btnAgregarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActividadActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Funcionalidad no implementada", "Información", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnAgregarActividadActionPerformed
 
+    private boolean validarCampos() {
+        if (txtTitulo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El título no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (txtDescripcion.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "La descripción no puede estar vacía", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (fechaInicio.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "La fecha de inicio no puede estar vacía", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (fechaFin.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "La fecha de fin no puede estar vacía", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (comboBoxModalidad.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Debes seleccionar una modalidad", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (fechaInicio.getDate().isAfter(fechaFin.getDate())) {
+            JOptionPane.showMessageDialog(this, "La fecha de inicio no puede ser posterior a la fecha de fin", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (responsableSeleccionado == null) {
+            JOptionPane.showMessageDialog(this, "Debes seleccionar un organizador", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarActividad;
     private javax.swing.JButton btnBuscarOrganizador;
@@ -308,7 +349,6 @@ public class FrmRegistrarEvento extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombre1;
     private javax.swing.JLabel lblNombre4;
@@ -318,6 +358,7 @@ public class FrmRegistrarEvento extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre8;
     private javax.swing.JLabel lblOrganizador;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

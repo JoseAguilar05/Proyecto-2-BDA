@@ -12,7 +12,7 @@ public class ParticipanteDTO {
     private TipoParticipante tipoParticipante;
     private String dependencia;
     private String numeroControl;
-    private List<String> actividadesIds;
+    private List<Integer> actividadesIds;
 
     /**
      * Constructor de la clase ParticipanteDTO.
@@ -92,7 +92,7 @@ public class ParticipanteDTO {
         return numeroControl;
     }
 
-    public List<String> getActividadesIds() {
+    public List<Integer> getActividadesIds() {
         return actividadesIds;
     }
 }

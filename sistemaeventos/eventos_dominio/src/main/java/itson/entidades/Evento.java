@@ -87,10 +87,6 @@ public class Evento implements Serializable {
     @JoinColumn(name = "id_responsable", nullable = false)
     private Responsable responsable;
 
-    @ManyToOne
-    @JoinColumn(name = "id_lugar", nullable = false)
-    private Lugar lugar;
-
     /**
      * Constructor por defecto.
      */
@@ -289,24 +285,6 @@ public class Evento implements Serializable {
      */
     public void setResponsable(Responsable responsable) {
         this.responsable = responsable;
-    }
-
-    /**
-     * Obtiene el lugar del evento.
-     * 
-     * @return El lugar del evento.
-     */
-    public Lugar getLugar() {
-        return lugar;
-    }
-
-    /**
-     * Establece el lugar del evento.
-     * 
-     * @param lugar El lugar del evento.
-     */
-    public void setLugar(Lugar lugar) {
-        this.lugar = lugar;
     }
 
 }

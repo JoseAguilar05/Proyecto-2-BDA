@@ -10,7 +10,7 @@ public class ActividadDTO {
     private Integer duracionEstimada;
     private String lugar;
     private List<String> participantesIds;
-    private String eventoId;
+    private Integer idEvento;
 
     /**
      * Constructor de la clase ActividadDTO.
@@ -25,7 +25,7 @@ public class ActividadDTO {
      * @param eventoId        El identificador del evento al que pertenece la actividad.
      */
     public ActividadDTO(Integer id, String nombre, String tipoActividad, String fechaInicio,
-            Integer duracionEstimada, String lugar, List<String> participantesIds, String eventoId) {
+            Integer duracionEstimada, String lugar, List<String> participantesIds, Integer eventoId) {
         this.id = id;
         this.nombre = nombre;
         this.tipoActividad = tipoActividad;
@@ -33,7 +33,7 @@ public class ActividadDTO {
         this.duracionEstimada = duracionEstimada;
         this.lugar = lugar;
         this.participantesIds = participantesIds;
-        this.eventoId = eventoId;
+        this.idEvento = eventoId;
     }
 
     public Integer getId() {
@@ -64,7 +64,7 @@ public class ActividadDTO {
         return participantesIds;
     }
 
-    public String getEventoId() {
-        return eventoId;
+    public Integer getIdEvento() {
+        return idEvento;
     }
 }

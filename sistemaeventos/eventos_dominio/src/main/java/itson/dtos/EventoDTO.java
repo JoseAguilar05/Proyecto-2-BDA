@@ -13,9 +13,8 @@ public class EventoDTO {
     private Calendar fechaFin;
     private EstadoEvento estado;
     private ModalidadEvento modalidad;
-    private List<String> actividadesIds;
-    private String responsableId;
-    private String lugarId;
+    private List<Integer> idsActividades;
+    private Integer responsableId;
 
     /**
      * Constructor de la clase EventoDTO.
@@ -27,13 +26,12 @@ public class EventoDTO {
      * @param fechaFin      La fecha y hora de finalización del evento.
      * @param estado        El estado del evento (EN_CURSO, PLANEADO, FINALIZADO).
      * @param modalidad     La modalidad del evento (PRESENCIAL, VIRTUAL).
-     * @param actividadesIds Lista de identificadores de actividades asociadas al evento.
+     * @param idsActividades Lista de identificadores de actividades asociadas al evento.
      * @param responsableId El identificador del responsable del evento.
      * @param lugarId       El identificador del lugar donde se llevará a cabo el evento.
      */
     public EventoDTO(Integer id, String titulo, String descripcion, Calendar fechaInicio, Calendar fechaFin,
-            EstadoEvento estado, ModalidadEvento modalidad, List<String> actividadesIds, String responsableId,
-            String lugarId) {
+            EstadoEvento estado, ModalidadEvento modalidad, List<Integer> actividadesIds, Integer responsableId) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -41,9 +39,8 @@ public class EventoDTO {
         this.fechaFin = fechaFin;
         this.estado = estado;
         this.modalidad = modalidad;
-        this.actividadesIds = actividadesIds;
+        this.idsActividades = actividadesIds;
         this.responsableId = responsableId;
-        this.lugarId = lugarId;
     }
 
     public Integer getId() {
@@ -74,15 +71,12 @@ public class EventoDTO {
         return modalidad;
     }
 
-    public List<String> getActividadesIds() {
-        return actividadesIds;
+    public List<Integer> getIdsActividades() {
+        return idsActividades;
     }
 
-    public String getResponsableId() {
+    public Integer getResponsableId() {
         return responsableId;
     }
 
-    public String getLugarId() {
-        return lugarId;
-    }
 }
