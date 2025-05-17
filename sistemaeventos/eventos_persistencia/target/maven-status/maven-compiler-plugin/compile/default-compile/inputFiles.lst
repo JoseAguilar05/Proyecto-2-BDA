@@ -1,5 +1,9 @@
 C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\src\main\java\itson\conexion\ManejadorConexiones.java
 C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\src\main\java\itson\excepciones\SeguridadException.java
+C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\src\main\java\itson\implementaciones\LugaresDAO.java
 C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\src\main\java\itson\implementaciones\ParticipantesDAO.java
+C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\src\main\java\itson\implementaciones\ResponsablesDAO.java
+C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\src\main\java\itson\interfaces\ILugaresDAO.java
 C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\src\main\java\itson\interfaces\IParticipantesDAO.java
+C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\src\main\java\itson\interfaces\IResponsablesDAO.java
 C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\src\main\java\itson\seguridad\Seguridad.java

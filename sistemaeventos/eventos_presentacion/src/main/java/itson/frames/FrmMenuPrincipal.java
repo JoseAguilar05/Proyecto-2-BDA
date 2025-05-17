@@ -124,7 +124,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnParticipantesActionPerformed
 
     private void btnEventosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEventosActionPerformed
-        // TODO add your handling code here:
+        ControlFlujo.mostrarFrame(new FrmEventos());
+        this.dispose();
     }//GEN-LAST:event_btnEventosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -3,3 +3,7 @@ itson\excepciones\SeguridadException.class
 itson\seguridad\Seguridad.class
 itson\conexion\ManejadorConexiones.class
 itson\implementaciones\ParticipantesDAO.class
+itson\interfaces\ILugaresDAO.class
+itson\implementaciones\ResponsablesDAO.class
+itson\implementaciones\LugaresDAO.class
+itson\interfaces\IResponsablesDAO.class

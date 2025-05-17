@@ -18,7 +18,7 @@ import paneles.PnlParticipante;
 
 public class FrmParticipantes extends javax.swing.JFrame {
 
-    private List<PnlParticipante> panelesParticipantes = new LinkedList<>();
+    private final List<PnlParticipante> panelesParticipantes = new LinkedList<>();
 
     /**
      * Creates new form FrmParticipantes
@@ -132,11 +132,6 @@ public class FrmParticipantes extends javax.swing.JFrame {
         comboBoxTipo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboBoxTipoItemStateChanged(evt);
-            }
-        });
-        comboBoxTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxTipoActionPerformed(evt);
             }
         });
 
@@ -342,10 +337,6 @@ public class FrmParticipantes extends javax.swing.JFrame {
         ControlFlujo.iniciarFlujo();
         this.dispose();
     }// GEN-LAST:event_btnVolverMouseClicked
-
-    private void comboBoxTipoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_comboBoxTipoActionPerformed
-        buscar();
-    }// GEN-LAST:event_comboBoxTipoActionPerformed
 
     private void buscar() {
         String filtro = txtBuscar.getText();
