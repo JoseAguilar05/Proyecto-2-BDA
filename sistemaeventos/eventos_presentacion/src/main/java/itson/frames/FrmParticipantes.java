@@ -1,8 +1,10 @@
 package itson.frames;
 
 import java.awt.Font;
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -15,6 +17,8 @@ import itson.interfaces.IParticipantesBO;
 import paneles.PnlParticipante;
 
 public class FrmParticipantes extends javax.swing.JFrame {
+
+    private List<PnlParticipante> panelesParticipantes = new LinkedList<>();
 
     /**
      * Creates new form FrmParticipantes
@@ -38,10 +42,12 @@ public class FrmParticipantes extends javax.swing.JFrame {
 
     private void cargarParticipantes(List<ParticipanteDTO> participantes) {
         boxPnlParticipantes.removeAll();
+        panelesParticipantes.clear();
         for (ParticipanteDTO participante : participantes) {
             PnlParticipante participantePanel = new PnlParticipante(participante);
             boxPnlParticipantes.add(participantePanel);
             boxPnlParticipantes.add(javax.swing.Box.createVerticalStrut(10));
+            panelesParticipantes.add(participantePanel);
         }
         boxPnlParticipantes.revalidate();
         boxPnlParticipantes.repaint();
@@ -198,6 +204,11 @@ public class FrmParticipantes extends javax.swing.JFrame {
         btnAsociar.setForeground(new java.awt.Color(255, 255, 255));
         btnAsociar.setText("Asociar a Actividad");
         btnAsociar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAsociar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsociarActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -292,6 +303,20 @@ public class FrmParticipantes extends javax.swing.JFrame {
         ControlFlujo.mostrarFrame(new FrmRegistrarParticipante());
         this.dispose();
     }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnAsociarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsociarActionPerformed
+        List<ParticipanteDTO> participantesSeleccionados = new LinkedList<>();
+        for(PnlParticipante panel : panelesParticipantes) {
+            if(panel.isSeleccionado()) {
+                participantesSeleccionados.add(panel.getParticipante());
+            }
+        }
+        if(participantesSeleccionados.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se han seleccionado participantes", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Opción de asociar a actividad no implementada", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAsociarActionPerformed
 
     private boolean seleccionado = false;
 

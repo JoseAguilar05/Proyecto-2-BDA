@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package paneles;
 
 import java.awt.Font;
@@ -137,6 +133,13 @@ public class PnlParticipante extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_checkBoxSeleccionadoActionPerformed
 
+    public boolean isSeleccionado() {
+        return checkBoxSeleccionado.isSelected();
+    }
+
+    public ParticipanteDTO getParticipante() {
+        return participanteDTO;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnVer;

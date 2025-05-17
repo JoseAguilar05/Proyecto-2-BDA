@@ -17,6 +17,16 @@ public class LugarDTO {
         this.edificio = edificio;
     }
 
+    /**
+     * Constructor de la clase LugarDTO.
+     * @param nombre El nombre del lugar.
+     * @param edificio La dirección del edificio donde se encuentra el lugar.
+     */
+    public LugarDTO(String nombre, String edificio) {
+        this.nombre = nombre;
+        this.edificio = edificio;
+    }
+
     public Integer getId() {
         return id;
     }
