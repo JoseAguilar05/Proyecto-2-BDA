@@ -5,6 +5,11 @@ import itson.dtos.ActividadDTO;
 import itson.dtos.LugarDTO;
 import itson.dtos.ResponsableDTO;
 import java.awt.Font;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 public class DlgAgregarActividad extends javax.swing.JDialog {
 
@@ -41,8 +46,8 @@ public class DlgAgregarActividad extends javax.swing.JDialog {
         jSpinnerCapacidad = new javax.swing.JSpinner();
         lblNombre9 = new javax.swing.JLabel();
         lblResponsable = new javax.swing.JLabel();
-        btnBuscarOrganizador1 = new javax.swing.JButton();
-        btnBuscarOrganizador2 = new javax.swing.JButton();
+        btnBuscarResponsable = new javax.swing.JButton();
+        btnBuscarLugar = new javax.swing.JButton();
         lblNombre10 = new javax.swing.JLabel();
         lblLugar = new javax.swing.JLabel();
 
@@ -50,10 +55,10 @@ public class DlgAgregarActividad extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(244, 246, 247));
 
-        lblTitulo.setFont(new Font("Inter", Font.PLAIN, 36));
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Agregar Actividad");
+        lblTitulo.setFont(new Font("Inter", Font.PLAIN, 36));
+        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
 
         btnVolver.setIcon(new javax.swing.ImageIcon("C:\\Users\\pc\\Downloads\\image 4.png")); // NOI18N
         btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -76,90 +81,85 @@ public class DlgAgregarActividad extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        lblNombre.setText("Evento: ");
         lblNombre.setFont(new Font("Inter", Font.PLAIN, 16));
         lblNombre.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre.setText("Evento: ");
 
+        lblNombre1.setText("Nombre Actividad");
         lblNombre1.setFont(new Font("Inter", Font.PLAIN, 16));
         lblNombre1.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre1.setText("Nombre Actividad");
 
+        lblNombre5.setText("Fecha y Hora");
         lblNombre5.setFont(new Font("Inter", Font.PLAIN, 16));
         lblNombre5.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre5.setText("Fecha y Hora");
 
         lblEvento.setText("Evento");
         lblEvento.setFont(new Font("Inter", Font.PLAIN, 16));
         lblEvento.setForeground(new java.awt.Color(0, 0, 0));
 
-        txtNombre.setBackground(new java.awt.Color(244, 246, 247));
         txtNombre.setFont(new Font("Inter", Font.PLAIN, 16));
+        txtNombre.setBackground(new java.awt.Color(244, 246, 247));
         txtNombre.setForeground(new java.awt.Color(0, 0, 0));
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
 
+        lblNombre3.setText("Tipo de Actividad");
         lblNombre3.setFont(new Font("Inter", Font.PLAIN, 16));
         lblNombre3.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre3.setText("Tipo de Actividad");
 
-        txtTipo.setBackground(new java.awt.Color(244, 246, 247));
         txtTipo.setFont(new Font("Inter", Font.PLAIN, 16));
+        txtTipo.setBackground(new java.awt.Color(244, 246, 247));
         txtTipo.setForeground(new java.awt.Color(0, 0, 0));
 
+        lblNombre6.setText("Duración estimada");
         lblNombre6.setFont(new Font("Inter", Font.PLAIN, 16));
         lblNombre6.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre6.setText("Duración estimada");
 
+        jSpinnerDuracion.setModel(new javax.swing.SpinnerNumberModel(10, 5, null, 5));
         jSpinnerDuracion.setFont(new Font("Inter", Font.PLAIN, 16));
-        jSpinnerDuracion.setModel(new javax.swing.SpinnerNumberModel(10, null, null, 5));
 
+        lblNombre7.setText("Capacidad Máxima");
         lblNombre7.setFont(new Font("Inter", Font.PLAIN, 16));
         lblNombre7.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre7.setText("Capacidad Máxima");
 
-        jSpinnerCapacidad.setFont(new Font("Inter", Font.PLAIN, 16));
         jSpinnerCapacidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jSpinnerCapacidad.setFont(new Font("Inter", Font.PLAIN, 16));
 
+        lblNombre9.setText("Responsable:");
         lblNombre9.setFont(new Font("Inter", Font.PLAIN, 16));
         lblNombre9.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre9.setText("Responsable:");
 
+        lblResponsable.setText("...");
         lblResponsable.setFont(new Font("Inter", Font.PLAIN, 16));
         lblResponsable.setForeground(new java.awt.Color(0, 0, 0));
-        lblResponsable.setText("...");
 
-        btnBuscarOrganizador1.setText("Buscar Responsable");
-        btnBuscarOrganizador1.setBackground(new java.awt.Color(66, 165, 245));
-        btnBuscarOrganizador1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBuscarOrganizador1.setFont(new Font("Inter", Font.PLAIN, 18));
-        btnBuscarOrganizador1.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscarOrganizador1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarResponsable.setText("Buscar Responsable");
+        btnBuscarResponsable.setBackground(new java.awt.Color(66, 165, 245));
+        btnBuscarResponsable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarResponsable.setFont(new Font("Inter", Font.PLAIN, 18));
+        btnBuscarResponsable.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarResponsable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarOrganizador1ActionPerformed(evt);
+                btnBuscarResponsableActionPerformed(evt);
             }
         });
 
-        btnBuscarOrganizador2.setText("Buscar Lugares");
-        btnBuscarOrganizador2.setBackground(new java.awt.Color(66, 165, 245));
-        btnBuscarOrganizador2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBuscarOrganizador2.setFont(new Font("Inter", Font.PLAIN, 18));
-        btnBuscarOrganizador2.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscarOrganizador2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarLugar.setText("Buscar Lugares");
+        btnBuscarLugar.setBackground(new java.awt.Color(66, 165, 245));
+        btnBuscarLugar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarLugar.setFont(new Font("Inter", Font.PLAIN, 18));
+        btnBuscarLugar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarLugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarOrganizador2ActionPerformed(evt);
+                btnBuscarLugarActionPerformed(evt);
             }
         });
 
+        lblNombre10.setText("Lugar");
         lblNombre10.setFont(new Font("Inter", Font.PLAIN, 16));
         lblNombre10.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombre10.setText("Lugar");
 
+        lblLugar.setText("...");
         lblLugar.setFont(new Font("Inter", Font.PLAIN, 16));
         lblLugar.setForeground(new java.awt.Color(0, 0, 0));
-        lblLugar.setText("...");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -178,14 +178,14 @@ public class DlgAgregarActividad extends javax.swing.JDialog {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblNombre9, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblResponsable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnBuscarOrganizador1, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
+                                    .addComponent(btnBuscarResponsable, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(1, 1, 1)
                                         .addComponent(lblNombre10, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(lblLugar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnBuscarOrganizador2, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))))
+                                    .addComponent(btnBuscarLugar, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -251,13 +251,13 @@ public class DlgAgregarActividad extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnBuscarOrganizador2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBuscarLugar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblNombre9, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnBuscarOrganizador1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnBuscarResponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -315,31 +315,90 @@ public class DlgAgregarActividad extends javax.swing.JDialog {
     }//GEN-LAST:event_btnVolverMouseClicked
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-
+        try{
+            validarCampos();
+            actividad = new ActividadDTO(
+                    txtNombre.getText(),
+                    txtTipo.getText(),
+                    toCalendar(fechaHora.getDateTimePermissive()),
+                    (Integer) jSpinnerDuracion.getValue(),
+                    (Integer) jSpinnerCapacidad.getValue(),
+                    responsableSeleccionado.getId(),
+                    lugarSeleccionado.getId()
+            );
+            this.dispose();
+        } catch (IllegalArgumentException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
+    private Calendar toCalendar(LocalDateTime fechaHora) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, fechaHora.getYear());
+        calendar.set(Calendar.MONTH, fechaHora.getMonthValue() - 1); // Meses en Calendar son 0-indexados
+        calendar.set(Calendar.DAY_OF_MONTH, fechaHora.getDayOfMonth());
+        calendar.set(Calendar.HOUR_OF_DAY, fechaHora.getHour());
+        calendar.set(Calendar.MINUTE, fechaHora.getMinute());
+        return calendar;
+    }
 
-    private void btnBuscarOrganizador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarOrganizador1ActionPerformed
-        
-    }//GEN-LAST:event_btnBuscarOrganizador1ActionPerformed
+    private void validarCampos() throws IllegalArgumentException {
+        if (txtNombre.getText().isEmpty()) {
+            throw new IllegalArgumentException("El nombre de la actividad no puede estar vacío.");
+        }
+        if (txtTipo.getText().isEmpty()) {
+            throw new IllegalArgumentException("El tipo de actividad no puede estar vacío.");
+        }
+        if(fechaHora.getDateTimePermissive() == null) {
+            throw new IllegalArgumentException("La fecha y hora no pueden estar vacías.");
+        }
+        if (jSpinnerDuracion.getValue() == null) {
+            throw new IllegalArgumentException("La duración no puede estar vacía.");
+        }
+        if (jSpinnerCapacidad.getValue() == null) {
+            throw new IllegalArgumentException("La capacidad no puede estar vacía.");
+        }
+        if (responsableSeleccionado == null) {
+            throw new IllegalArgumentException("Debe seleccionar un responsable.");
+        }
+        if (lugarSeleccionado == null) {
+            throw new IllegalArgumentException("Debe seleccionar un lugar.");
+        }
 
-    private void btnBuscarOrganizador2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarOrganizador2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarOrganizador2ActionPerformed
+    }
+
+    private void btnBuscarResponsableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarResponsableActionPerformed
+        JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
+        DlgSeleccionarOrganizador dlgSeleccionarOrganizador = new DlgSeleccionarOrganizador(parent, true, DlgSeleccionarOrganizador.OPCION_ACTIVIDAD);
+        responsableSeleccionado = dlgSeleccionarOrganizador.obtenerResponsableSeleccionado();
+        if (responsableSeleccionado != null) {
+            lblResponsable.setText(Formateador.formatearNombre(responsableSeleccionado.getNombre(), responsableSeleccionado.getApellidoPaterno(), responsableSeleccionado.getApellidoMaterno()));
+        } else {
+            lblResponsable.setText("...");
+        }
+    }//GEN-LAST:event_btnBuscarResponsableActionPerformed
+
+    private void btnBuscarLugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarLugarActionPerformed
+        JFrame parent = (JFrame) SwingUtilities.getWindowAncestor(this);
+        DlgSeleccionarLugar dlgSeleccionarLugar = new DlgSeleccionarLugar(parent, true);
+        lugarSeleccionado = dlgSeleccionarLugar.obtenerLugarSeleccionado();
+        if (lugarSeleccionado != null) {
+            lblLugar.setText(lugarSeleccionado.getNombre());
+        } else {
+            lblLugar.setText("...");
+        }
+    }//GEN-LAST:event_btnBuscarLugarActionPerformed
 
     public ActividadDTO agregarActividadDTO() {
         this.actividad = null;
-        this.setVisible(true);
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
         return this.actividad;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuscarOrganizador1;
-    private javax.swing.JButton btnBuscarOrganizador2;
+    private javax.swing.JButton btnBuscarLugar;
+    private javax.swing.JButton btnBuscarResponsable;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel btnVolver;
     private com.github.lgooddatepicker.components.DateTimePicker fechaHora;

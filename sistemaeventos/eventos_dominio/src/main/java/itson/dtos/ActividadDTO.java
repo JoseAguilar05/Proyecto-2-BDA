@@ -9,6 +9,7 @@ public class ActividadDTO {
     private String tipoActividad;
     private Calendar fechaInicio;
     private Integer duracionEstimada;
+    private Integer capacidadMaxima;
     private Integer lugarId;
     private Integer responsableId;
     private List<String> participantesIds;
@@ -27,12 +28,13 @@ public class ActividadDTO {
      * @param eventoId        El identificador del evento al que pertenece la actividad.
      */
     public ActividadDTO(Integer id, String nombre, String tipoActividad, Calendar fechaInicio,
-            Integer duracionEstimada, Integer lugarId, Integer responsableId, List<String> participantesIds, Integer eventoId) {
+            Integer duracionEstimada, Integer capacidadMaxima, Integer lugarId, Integer responsableId, List<String> participantesIds, Integer eventoId) {
         this.id = id;
         this.nombre = nombre;
         this.tipoActividad = tipoActividad;
         this.fechaInicio = fechaInicio;
         this.duracionEstimada = duracionEstimada;
+        this.capacidadMaxima = capacidadMaxima;
         this.lugarId = lugarId;
         this.responsableId = responsableId;
         this.participantesIds = participantesIds;
@@ -49,11 +51,12 @@ public class ActividadDTO {
      * @param responsableId Identificador del responsable de la actividad.
      */
     public ActividadDTO(String nombre, String tipoActividad, Calendar fechaInicio,
-            Integer duracionEstimada, Integer lugarId, Integer responsableId) {
+            Integer duracionEstimada, Integer capacidadMaxima, Integer lugarId, Integer responsableId) {
         this.nombre = nombre;
         this.tipoActividad = tipoActividad;
         this.fechaInicio = fechaInicio;
         this.duracionEstimada = duracionEstimada;
+        this.capacidadMaxima = capacidadMaxima;
         this.lugarId = lugarId;
         this.responsableId = responsableId;
     }
@@ -92,5 +95,9 @@ public class ActividadDTO {
 
     public Integer getResponsableId() {
         return responsableId;
+    }
+
+    public Integer getCapacidadMaxima() {
+        return capacidadMaxima;
     }
 }

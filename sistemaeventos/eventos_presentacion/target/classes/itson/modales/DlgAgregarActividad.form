@@ -152,7 +152,7 @@
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="lblNombre9" min="-2" pref="162" max="-2" attributes="0"/>
                                           <Component id="lblResponsable" max="32767" attributes="0"/>
-                                          <Component id="btnBuscarOrganizador1" alignment="0" pref="222" max="32767" attributes="0"/>
+                                          <Component id="btnBuscarResponsable" alignment="0" pref="222" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -161,7 +161,7 @@
                                               <Component id="lblNombre10" min="-2" pref="116" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="lblLugar" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="btnBuscarOrganizador2" alignment="0" pref="218" max="32767" attributes="0"/>
+                                          <Component id="btnBuscarLugar" alignment="0" pref="218" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -252,14 +252,14 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblLugar" min="-2" pref="24" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnBuscarOrganizador2" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="btnBuscarLugar" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="lblNombre9" min="-2" pref="24" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblResponsable" min="-2" pref="24" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnBuscarOrganizador1" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="btnBuscarResponsable" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="15" max="32767" attributes="0"/>
@@ -324,9 +324,6 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblNombre3">
               <Properties>
@@ -368,7 +365,7 @@
             <Component class="javax.swing.JSpinner" name="jSpinnerDuracion">
               <Properties>
                 <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-                  <SpinnerModel initial="10" numberType="java.lang.Integer" stepSize="5" type="number"/>
+                  <SpinnerModel initial="10" minimum="5" numberType="java.lang.Integer" stepSize="5" type="number"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 16)" type="code"/>
@@ -418,7 +415,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnBuscarOrganizador1">
+            <Component class="javax.swing.JButton" name="btnBuscarResponsable">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar Responsable"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -435,10 +432,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarOrganizador1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarResponsableActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnBuscarOrganizador2">
+            <Component class="javax.swing.JButton" name="btnBuscarLugar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar Lugares"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -455,7 +452,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarOrganizador2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarLugarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblNombre10">

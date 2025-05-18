@@ -1,5 +1,6 @@
 package itson.modales;
 
+import itson.control.Formateador;
 import itson.dtos.ResponsableDTO;
 import itson.enums.TipoResponsable;
 import itson.interfaces.IResponsablesBO;
@@ -24,11 +25,22 @@ public class DlgSeleccionarOrganizador extends JDialog {
     private ResponsableDTO responsableSeleccionado;
     private transient IResponsablesBO responsablesBO; 
     private List<ResponsableDTO> listaResponsablesMostrados;
+    
+    private int opcion;
 
-    public DlgSeleccionarOrganizador(Frame owner, boolean modal) {
+    public static final int OPCION_EVENTO = 0;
+    public static final int OPCION_ACTIVIDAD = 1;
+
+    public DlgSeleccionarOrganizador(Frame owner, boolean modal, int opcion) {
         super(owner, modal);
         this.responsablesBO = ObjetosNegocioFactory.crearResponsablesBO();
         this.listaResponsablesMostrados = new ArrayList<>();
+        this.opcion = opcion;
+        if (opcion == OPCION_EVENTO) {
+            setTitle("Seleccionar Organizador para Evento");
+        } else if (opcion == OPCION_ACTIVIDAD) {
+            setTitle("Seleccionar Organizador para Actividad");
+        }
         initComponents();
         cargarResponsables();
         setTitle("Seleccionar Organizador");
@@ -37,7 +49,7 @@ public class DlgSeleccionarOrganizador extends JDialog {
     }
 
     private void initComponents() {
-        modeloTabla = new DefaultTableModel(new Object[]{"Nombre Completo", "Teléfono"}, 0) {
+        modeloTabla = new DefaultTableModel(new Object[]{"Nombre Completo", "Teléfono", "Tipo Responsable"}, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; 
@@ -68,10 +80,17 @@ public class DlgSeleccionarOrganizador extends JDialog {
                     responsableSeleccionado = listaResponsablesMostrados.get(filaSeleccionada);
                     dispose(); // Cerrar el diálogo
                 } else {
-                    JOptionPane.showMessageDialog(DlgSeleccionarOrganizador.this,
-                            "Por favor, seleccione un organizador de la tabla.",
-                            "Ningún Organizador Seleccionado",
-                            JOptionPane.WARNING_MESSAGE);
+                    if(opcion == OPCION_EVENTO) {
+                        JOptionPane.showMessageDialog(DlgSeleccionarOrganizador.this,
+                                "Por favor, seleccione un organizador de la tabla.",
+                                "Ningún Organizador Seleccionado",
+                                JOptionPane.WARNING_MESSAGE);
+                    } else if (opcion == OPCION_ACTIVIDAD) {
+                        JOptionPane.showMessageDialog(DlgSeleccionarOrganizador.this,
+                                "Por favor, seleccione un responsable de la tabla.",
+                                "Ningún Organizador Seleccionado",
+                                JOptionPane.WARNING_MESSAGE);
+                    }
                 }
             }
         });
@@ -99,7 +118,12 @@ public class DlgSeleccionarOrganizador extends JDialog {
      */
     private void cargarResponsables() {
         try {
-            List<ResponsableDTO> todosLosResponsables = responsablesBO.obtenerResponsablesPorTipo(TipoResponsable.RESPONSABLE);
+            List<ResponsableDTO> todosLosResponsables = null;
+            if(opcion == OPCION_EVENTO) {
+                todosLosResponsables = responsablesBO.obtenerResponsablesPorTipo(TipoResponsable.RESPONSABLE);
+            } else if (opcion == OPCION_ACTIVIDAD) {
+                todosLosResponsables = responsablesBO.obtenerResponsables();
+            }
             listaResponsablesMostrados.clear(); 
             modeloTabla.setRowCount(0); 
 
@@ -111,6 +135,7 @@ public class DlgSeleccionarOrganizador extends JDialog {
                                                 responsable.getApellidoMaterno();
                         fila.add(nombreCompleto.trim());
                         fila.add(responsable.getTelefono());
+                        fila.add(Formateador.formatearCap(responsable.getTipoResponsable().toString()));
                         modeloTabla.addRow(fila);
                         listaResponsablesMostrados.add(responsable); 
                 }

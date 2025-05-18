@@ -148,9 +148,9 @@ public class EventosDAOTest {
 
         List<ActividadDTO> actividades = new ArrayList<>();
         actividades.add(new ActividadDTO( "Charla Inaugural", "Conferencia",
-                toCalendar(LocalDateTime.now().plusDays(10).plusHours(2)), 60, lugarActividad.getId(), respActividad.getId()));
+                toCalendar(LocalDateTime.now().plusDays(10).plusHours(2)), 60, 30, lugarActividad.getId(), respActividad.getId()));
         actividades.add(new ActividadDTO( "Taller de Machine Learning", "Taller",
-                toCalendar(LocalDateTime.now().plusDays(11).plusHours(4)), 120, lugarActividad.getId(), respActividad.getId()));
+                toCalendar(LocalDateTime.now().plusDays(11).plusHours(4)), 120, 30, lugarActividad.getId(), respActividad.getId()));
 
         eventoGuardado = eventosDAO.guardarEventoConActividades(eventoDTO, actividades);
 
@@ -185,7 +185,7 @@ public class EventosDAOTest {
         EventoDTO eventoDTO = new EventoDTO(null, "Evento Lugar Fail", "Desc", toCalendar(LocalDateTime.now()), toCalendar(LocalDateTime.now().plusDays(1)),
                                             EstadoEvento.PLANEADO, ModalidadEvento.PRESENCIAL, null, orgEvento.getId());
         List<ActividadDTO> actividades = new ArrayList<>();
-        actividades.add(new ActividadDTO("Actividad Lugar Fail", "Conferencia", toCalendar(LocalDateTime.now()), 60, -998, respActividad.getId())); // ID de lugar inválido
+        actividades.add(new ActividadDTO("Actividad Lugar Fail", "Conferencia", toCalendar(LocalDateTime.now()), 60,30, -998, respActividad.getId())); // ID de lugar inválido
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             eventosDAO.guardarEventoConActividades(eventoDTO, actividades);

@@ -56,6 +56,12 @@ public class Actividad {
     private Integer duracionEstimada;
 
     /**
+     * Capacidad máxima de participantes en la actividad.
+     */
+    @Column(name = "capacidad_maxima")
+    private Integer capacidadMaxima;
+
+    /**
      * Ubicación donde se llevará a cabo la actividad.
      */
     @ManyToOne
@@ -265,5 +271,23 @@ public class Actividad {
      */
     public void setResponsable(Responsable responsable) {
         this.responsable = responsable;
+    }
+
+    /**
+     * Obtiene la capacidad máxima de participantes en la actividad.
+     * 
+     * @return La capacidad máxima de la actividad.
+     */
+    public Integer getCapacidadMaxima() {
+        return capacidadMaxima;
+    }
+
+    /**
+     * Establece la capacidad máxima de participantes en la actividad.
+     * 
+     * @param capacidadMaxima La capacidad máxima de la actividad.
+     */
+    public void setCapacidadMaxima(Integer capacidadMaxima) {
+        this.capacidadMaxima = capacidadMaxima;
     }
 }

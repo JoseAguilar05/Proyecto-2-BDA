@@ -42,6 +42,8 @@ public class EventoDTO {
         this.responsableId = responsableId;
     }
 
+    
+
     public Integer getId() {
         return id;
     }
