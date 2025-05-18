@@ -3,6 +3,7 @@ package itson.implementaciones;
 import java.util.List;
 
 import itson.dtos.ActividadDTO;
+import itson.dtos.BusquedaEventoDTO;
 import itson.dtos.EventoDTO;
 import itson.entidades.Evento;
 import itson.excepciones.NegocioException;
@@ -41,6 +42,12 @@ public class EventosBO implements IEventosBO {
     @Override
     public List<EventoDTO> obtenerEventos() {
         List<EventoDTO> eventos = eventosDAO.obtenerEventos();
+        return eventos;
+    }
+
+    @Override
+    public List<EventoDTO> buscarEventosPorFiltro(BusquedaEventoDTO filtro) {
+        List<EventoDTO> eventos = eventosDAO.buscarEventosPorFiltro(filtro);
         return eventos;
     }
 

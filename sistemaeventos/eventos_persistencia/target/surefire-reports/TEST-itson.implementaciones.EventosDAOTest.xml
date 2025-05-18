@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="itson.implementaciones.LugaresDAOTest" time="0.17" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="itson.implementaciones.EventosDAOTest" time="1.672" tests="9" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -59,32 +59,42 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testObtenerLugaresCuandoEstaVacia" classname="itson.implementaciones.LugaresDAOTest" time="0.032">
-    <system-out><![CDATA[obtenerLugaresCuandoEstaVacia
+  <testcase name="testGuardarEvento_LugarActividadNoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="1.131">
+    <system-out><![CDATA[guardarEvento_LugarActividadNoEncontrado
+[EL Info]: 2025-05-18 00:20:43.042--ServerSession(323823279)--EclipseLink, version: Eclipse Persistence Services - 2.7.12.v20230209-e5c4074ef3
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarLugarPorId" classname="itson.implementaciones.LugaresDAOTest" time="0.025">
-    <system-out><![CDATA[buscarLugarPorId
+  <testcase name="testGuardarEvento_ResponsableEventoNoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.011">
+    <system-out><![CDATA[guardarEvento_ResponsableEventoNoEncontrado
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarLugarPorIdNoExistente" classname="itson.implementaciones.LugaresDAOTest" time="0.004">
-    <system-out><![CDATA[buscarLugarPorIdNoExistente
+  <testcase name="testEliminarEvento_NoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.006">
+    <system-out><![CDATA[eliminarEvento_NoEncontrado
 ]]></system-out>
   </testcase>
-  <testcase name="testEliminarLugar" classname="itson.implementaciones.LugaresDAOTest" time="0.027">
-    <system-out><![CDATA[eliminarLugar
+  <testcase name="testBuscarEventoPorId_Exitoso" classname="itson.implementaciones.EventosDAOTest" time="0.066">
+    <system-out><![CDATA[buscarEventoPorId_Exitoso
 ]]></system-out>
   </testcase>
-  <testcase name="testEliminarLugarNoExistente" classname="itson.implementaciones.LugaresDAOTest" time="0.004">
-    <system-out><![CDATA[eliminarLugarNoExistente
+  <testcase name="testObtenerEventos_Vacio" classname="itson.implementaciones.EventosDAOTest" time="0.009">
+    <system-out><![CDATA[obtenerEventos_Vacio
 ]]></system-out>
   </testcase>
-  <testcase name="testGuardarLugar" classname="itson.implementaciones.LugaresDAOTest" time="0.023">
-    <system-out><![CDATA[guardarLugar
+  <testcase name="testObtenerEventos" classname="itson.implementaciones.EventosDAOTest" time="0.121">
+    <system-out><![CDATA[obtenerEventos
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerLugares" classname="itson.implementaciones.LugaresDAOTest" time="0.049">
-    <system-out><![CDATA[obtenerLugares
+  <testcase name="testEliminarEvento_Exitoso" classname="itson.implementaciones.EventosDAOTest" time="0.062">
+    <system-out><![CDATA[eliminarEvento_Exitoso
+]]></system-out>
+  </testcase>
+  <testcase name="testGuardarEventoConActividades_Exitoso" classname="itson.implementaciones.EventosDAOTest" time="0.216">
+    <system-out><![CDATA[guardarEventoConActividades_Exitoso
+[EL Info]: 2025-05-18 00:20:44.14--ServerSession(1898996968)--EclipseLink, version: Eclipse Persistence Services - 2.7.12.v20230209-e5c4074ef3
+]]></system-out>
+  </testcase>
+  <testcase name="testBuscarEventoPorId_NoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.004">
+    <system-out><![CDATA[buscarEventoPorId_NoEncontrado
 ]]></system-out>
   </testcase>
 </testsuite>

@@ -41,6 +41,18 @@ public class PnlEvento extends javax.swing.JPanel {
         lblEstado = new javax.swing.JLabel();
         btnVer = new javax.swing.JLabel();
         btnVer1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        lblTitulo1 = new javax.swing.JLabel();
+        lblFechaInicio1 = new javax.swing.JLabel();
+        lblFechaFin1 = new javax.swing.JLabel();
+        lblModalidad1 = new javax.swing.JLabel();
+        lblEstado1 = new javax.swing.JLabel();
+        btnVer2 = new javax.swing.JLabel();
+        btnVer3 = new javax.swing.JLabel();
+
+        setMaximumSize(new java.awt.Dimension(437, 169));
+        setMinimumSize(new java.awt.Dimension(437, 169));
 
         jPanel1.setBackground(new java.awt.Color(244, 246, 247));
         jPanel1.setMaximumSize(new java.awt.Dimension(437, 159));
@@ -120,6 +132,105 @@ public class PnlEvento extends javax.swing.JPanel {
                         .addGap(19, 19, 19))))
         );
 
+        jPanel3.setBackground(new java.awt.Color(244, 246, 247));
+        jPanel3.setMaximumSize(new java.awt.Dimension(437, 159));
+        jPanel3.setMinimumSize(new java.awt.Dimension(437, 159));
+
+        lblTitulo1.setFont(new Font("Inter", Font.PLAIN, 14));
+        lblTitulo1.setForeground(new java.awt.Color(0, 0, 0));
+        lblTitulo1.setText("Nombre Evento");
+
+        lblFechaInicio1.setFont(new Font("Inter", Font.PLAIN, 14));
+        lblFechaInicio1.setForeground(new java.awt.Color(0, 0, 0));
+        lblFechaInicio1.setText("Fecha Inicio:");
+
+        lblFechaFin1.setFont(new Font("Inter", Font.PLAIN, 14));
+        lblFechaFin1.setForeground(new java.awt.Color(0, 0, 0));
+        lblFechaFin1.setText("Fecha Fin:");
+
+        lblModalidad1.setFont(new Font("Inter", Font.PLAIN, 14));
+        lblModalidad1.setForeground(new java.awt.Color(0, 0, 0));
+        lblModalidad1.setText("Modalidad:");
+
+        lblEstado1.setFont(new Font("Inter", Font.PLAIN, 14));
+        lblEstado1.setForeground(new java.awt.Color(0, 0, 0));
+        lblEstado1.setText("Estado:");
+
+        btnVer2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btnVer.png"))); // NOI18N
+        btnVer2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        btnVer3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btnModificar.png"))); // NOI18N
+        btnVer3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblFechaInicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblEstado1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                                    .addComponent(lblFechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblModalidad1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnVer2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnVer3)))
+                        .addContainerGap(29, Short.MAX_VALUE))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblTitulo1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblFechaInicio1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblFechaFin1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblModalidad1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblEstado1)
+                        .addContainerGap(28, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnVer3)
+                            .addComponent(btnVer2))
+                        .addGap(19, 19, 19))))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 437, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 169, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,6 +241,11 @@ public class PnlEvento extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,6 +255,11 @@ public class PnlEvento extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,11 +267,20 @@ public class PnlEvento extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnVer;
     private javax.swing.JLabel btnVer1;
+    private javax.swing.JLabel btnVer2;
+    private javax.swing.JLabel btnVer3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblEstado1;
     private javax.swing.JLabel lblFechaFin;
+    private javax.swing.JLabel lblFechaFin1;
     private javax.swing.JLabel lblFechaInicio;
+    private javax.swing.JLabel lblFechaInicio1;
     private javax.swing.JLabel lblModalidad;
+    private javax.swing.JLabel lblModalidad1;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTitulo1;
     // End of variables declaration//GEN-END:variables
 }

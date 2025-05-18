@@ -1,8 +1,10 @@
 itson\interfaces\IParticipantesBO.class
 itson\implementaciones\ParticipantesBO.class
 itson\fabrica\ObjetosNegocioFactory.class
+itson\implementaciones\EventosBO.class
 itson\excepciones\NegocioException.class
 itson\interfaces\ILugaresBO.class
 itson\implementaciones\ResponsablesBO.class
 itson\interfaces\IResponsablesBO.class
 itson\implementaciones\LugaresBO.class
+itson\interfaces\IEventosBO.class

@@ -1,10 +1,21 @@
 package itson.frames;
 
 import java.awt.Font;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.List;
+
+import javax.swing.Box;
+import javax.swing.event.DocumentListener;
 
 import itson.control.ControlFlujo;
+import itson.dtos.BusquedaEventoDTO;
+import itson.dtos.EventoDTO;
 import itson.enums.EstadoEvento;
 import itson.enums.ModalidadEvento;
+import itson.fabrica.ObjetosNegocioFactory;
+import itson.interfaces.IEventosBO;
+import paneles.PnlEvento;
 
 public class FrmEventos extends javax.swing.JFrame {
 
@@ -14,6 +25,8 @@ public class FrmEventos extends javax.swing.JFrame {
     public FrmEventos() {
         initComponents();
         cargarFiltros();
+        cargarEventos();
+        cargarListener();
     }
 
     private void cargarFiltros() {
@@ -29,6 +42,50 @@ public class FrmEventos extends javax.swing.JFrame {
             String frmtEstado = strEstado.substring(0, 1).toUpperCase() + strEstado.substring(1).toLowerCase();
             comboBoxEstado.addItem(frmtEstado);
         }
+    }
+
+    private void cargarEventos() {
+        IEventosBO eventosBO = ObjetosNegocioFactory.crearEventosBO();
+        List<EventoDTO> eventos = eventosBO.obtenerEventos();
+        cargarEventos(eventos);
+
+    }
+
+    private void cargarListener() {
+        DocumentListener listener = new DocumentListener() {
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                buscar();
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                buscar();
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                buscar();
+            }
+        };
+
+        txtBuscar.getDocument().addDocumentListener(listener);
+        comboBoxModalidad.addItemListener(evt -> buscar());
+        comboBoxEstado.addItemListener(evt -> buscar());
+        fechaDesde.addPropertyChangeListener(evt -> buscar());
+        fechaHasta.addPropertyChangeListener(evt -> buscar());
+
+    }
+
+    private void cargarEventos(List<EventoDTO> eventos) {
+        boxPnlEventos.removeAll();
+        for (EventoDTO evento : eventos) {
+            PnlEvento pnlEvento = new PnlEvento(evento);
+            boxPnlEventos.add(pnlEvento);
+            boxPnlEventos.add(Box.createVerticalStrut(10));
+        }
+        boxPnlEventos.revalidate();
+        boxPnlEventos.repaint();
     }
 
     /**
@@ -64,54 +121,54 @@ public class FrmEventos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(244, 246, 247));
 
-        lblTitulo.setFont(new Font("Inter", Font.PLAIN, 36));
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Eventos");
+        lblTitulo.setFont(new Font("Inter", Font.PLAIN, 36));
+        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
 
         pnlBotones.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblTitulo1.setFont(new Font("Inter", Font.PLAIN, 18));
-        lblTitulo1.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo1.setText("Filtros de búsqueda");
+        lblTitulo1.setFont(new Font("Inter", Font.PLAIN, 18));
+        lblTitulo1.setForeground(new java.awt.Color(0, 0, 0));
 
+        lblTitulo2.setText("Modalidad");
         lblTitulo2.setFont(new Font("Inter", Font.PLAIN, 18));
         lblTitulo2.setForeground(new java.awt.Color(0, 0, 0));
-        lblTitulo2.setText("Modalidad");
 
+        comboBoxModalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar..." }));
         comboBoxModalidad.setBackground(new java.awt.Color(244, 246, 247));
         comboBoxModalidad.setFont(new Font("Inter", Font.PLAIN, 16));
         comboBoxModalidad.setForeground(new java.awt.Color(0, 0, 0));
-        comboBoxModalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar..." }));
         comboBoxModalidad.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboBoxModalidadItemStateChanged(evt);
             }
         });
 
+        comboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar..." }));
         comboBoxEstado.setBackground(new java.awt.Color(244, 246, 247));
         comboBoxEstado.setFont(new Font("Inter", Font.PLAIN, 16));
         comboBoxEstado.setForeground(new java.awt.Color(0, 0, 0));
-        comboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar..." }));
         comboBoxEstado.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 comboBoxEstadoItemStateChanged(evt);
             }
         });
 
+        lblTitulo3.setText("Estado");
         lblTitulo3.setFont(new Font("Inter", Font.PLAIN, 18));
         lblTitulo3.setForeground(new java.awt.Color(0, 0, 0));
-        lblTitulo3.setText("Estado");
 
-        lblTitulo4.setFont(new Font("Inter", Font.PLAIN, 18));
-        lblTitulo4.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo4.setText("Fechas");
+        lblTitulo4.setFont(new Font("Inter", Font.PLAIN, 18));
+        lblTitulo4.setForeground(new java.awt.Color(0, 0, 0));
 
+        lblTitulo5.setText("Desde");
         lblTitulo5.setFont(new Font("Inter", Font.PLAIN, 18));
         lblTitulo5.setForeground(new java.awt.Color(0, 0, 0));
-        lblTitulo5.setText("Desde");
 
         fechaDesde.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -119,9 +176,9 @@ public class FrmEventos extends javax.swing.JFrame {
             }
         });
 
+        lblTitulo6.setText("Hasta");
         lblTitulo6.setFont(new Font("Inter", Font.PLAIN, 18));
         lblTitulo6.setForeground(new java.awt.Color(0, 0, 0));
-        lblTitulo6.setText("Hasta");
 
         javax.swing.GroupLayout pnlBotonesLayout = new javax.swing.GroupLayout(pnlBotones);
         pnlBotones.setLayout(pnlBotonesLayout);
@@ -168,10 +225,10 @@ public class FrmEventos extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
+        txtBuscar.setText("Buscar...");
         txtBuscar.setBackground(new java.awt.Color(255, 255, 255));
         txtBuscar.setFont(new Font("Inter", Font.PLAIN, 16));
         txtBuscar.setForeground(new java.awt.Color(100, 100, 100));
-        txtBuscar.setText("Buscar...");
         txtBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtBuscarMouseClicked(evt);
@@ -204,11 +261,16 @@ public class FrmEventos extends javax.swing.JFrame {
         });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.setInheritsPopupMenu(true);
 
-        scrollPaneEventos.setBorder(null);
         scrollPaneEventos.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneEventos.setBackground(new java.awt.Color(255, 255, 255));
+        scrollPaneEventos.setBorder(null);
+        scrollPaneEventos.setForeground(new java.awt.Color(255, 255, 255));
 
         boxPnlEventos.setBackground(new java.awt.Color(255, 255, 255));
+        boxPnlEventos.setForeground(new java.awt.Color(255, 255, 255));
         boxPnlEventos.setLayout(new javax.swing.BoxLayout(boxPnlEventos, javax.swing.BoxLayout.Y_AXIS));
         scrollPaneEventos.setViewportView(boxPnlEventos);
 
@@ -330,6 +392,39 @@ public class FrmEventos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }// GEN-LAST:event_fechaDesdePropertyChange
 
+    private void buscar() {
+        String filtro = txtBuscar.getText();
+        String modalidadStr = comboBoxModalidad.getSelectedItem().toString().toUpperCase();
+        String estadoStr = comboBoxEstado.getSelectedItem().toString().toUpperCase();
+        ModalidadEvento modalidad = null;
+        if (!modalidadStr.equals("SELECCIONAR...")) {
+            modalidad = ModalidadEvento.valueOf(modalidadStr);
+        } 
+        EstadoEvento estado = null;
+        if (!estadoStr.equals("SELECCIONAR...")) {
+            estado = EstadoEvento.valueOf(estadoStr);
+        }
+        if (filtro.isEmpty()) {
+            filtro = null;
+        }
+        Calendar fechaDesde = toCalendar(this.fechaDesde.getDate());
+        Calendar fechaHasta = toCalendar(this.fechaHasta.getDate());
+        
+        BusquedaEventoDTO busquedaEventoDTO = new BusquedaEventoDTO(filtro, fechaDesde, fechaHasta,
+                modalidad, estado);
+        IEventosBO eventosBO = ObjetosNegocioFactory.crearEventosBO();
+        List<EventoDTO> eventos = eventosBO.buscarEventosPorFiltro(busquedaEventoDTO);
+        cargarEventos(eventos);
+    }
+
+    private Calendar toCalendar(LocalDate date) {
+        if (date == null) {
+            return null;
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(date.getYear(), date.getMonthValue() - 1, date.getDayOfMonth());
+        return calendar;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel boxPnlEventos;
     private javax.swing.JButton btnNuevo;

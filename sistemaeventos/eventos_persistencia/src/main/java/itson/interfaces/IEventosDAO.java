@@ -3,6 +3,7 @@ package itson.interfaces;
 import java.util.List;
 
 import itson.dtos.ActividadDTO;
+import itson.dtos.BusquedaEventoDTO;
 import itson.dtos.EventoDTO;
 import itson.entidades.Evento;
 
@@ -37,4 +38,11 @@ public interface IEventosDAO {
      * @return true si se eliminó correctamente, false en caso contrario.
      */
     boolean eliminarEvento(int id);
+
+    /**
+     * Busca eventos por un filtro específico.
+     * @param filtro El filtro de búsqueda que contiene los criterios de búsqueda.
+     * @return Lista de eventos que cumplen con el filtro.
+     */
+    List<EventoDTO> buscarEventosPorFiltro(BusquedaEventoDTO filtro);
 }

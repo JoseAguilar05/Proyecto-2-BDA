@@ -1,8 +1,10 @@
 itson\interfaces\IParticipantesDAO.class
 itson\excepciones\SeguridadException.class
+itson\implementaciones\EventosDAO.class
 itson\seguridad\Seguridad.class
 itson\conexion\ManejadorConexiones.class
 itson\implementaciones\ParticipantesDAO.class
+itson\interfaces\IEventosDAO.class
 itson\interfaces\ILugaresDAO.class
 itson\implementaciones\ResponsablesDAO.class
 itson\implementaciones\LugaresDAO.class
