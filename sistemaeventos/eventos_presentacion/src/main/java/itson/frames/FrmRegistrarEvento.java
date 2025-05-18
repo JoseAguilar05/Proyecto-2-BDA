@@ -5,6 +5,7 @@ import itson.control.Formateador;
 import itson.dtos.ActividadDTO;
 import itson.dtos.ResponsableDTO;
 import itson.enums.ModalidadEvento;
+import itson.modales.DlgAgregarActividad;
 import itson.modales.DlgSeleccionarOrganizador;
 
 import java.awt.Font;
@@ -304,7 +305,16 @@ public class FrmRegistrarEvento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarOrganizadorActionPerformed
 
     private void btnAgregarActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActividadActionPerformed
-        JOptionPane.showMessageDialog(this, "Funcionalidad no implementada", "Información", JOptionPane.WARNING_MESSAGE);
+        if (txtTitulo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El título de la actividad no puede estar vacío", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        DlgAgregarActividad dlgAgregarActividad = new DlgAgregarActividad(this, true, txtTitulo.getText());
+        ActividadDTO actividad = dlgAgregarActividad.agregarActividadDTO();
+        if (actividad != null) {
+            JOptionPane.showMessageDialog(null, "Actividad agregada exitosamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            this.actividades.add(actividad);
+        }
     }//GEN-LAST:event_btnAgregarActividadActionPerformed
 
     private boolean validarCampos() {
