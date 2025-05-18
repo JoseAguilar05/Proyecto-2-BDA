@@ -94,7 +94,6 @@ public class EventosDAOTest {
         eventoGuardado = null;
     }
 
-    // --- Helper Methods para crear entidades de prueba ---
     private Responsable crearYGuardarResponsable(String nombre, String tel, TipoResponsable tipo) {
         ResponsableDTO dto = new ResponsableDTO(null, nombre, "ApTest", "AmTest", tel, tipo);
         responsablesDAO.guardarResponsable(dto);
@@ -102,7 +101,7 @@ public class EventosDAOTest {
         try {
             Responsable r = em.createQuery("SELECT r FROM Responsable r WHERE r.telefono = :tel ORDER BY r.id DESC", Responsable.class)
                 .setParameter("tel", tel).setMaxResults(1).getSingleResult();
-            responsablesCreadosTest.add(r); // Registrar para limpieza
+            responsablesCreadosTest.add(r);
             return r;
         } catch(NoResultException e){
             fail("No se pudo recuperar el responsable guardado con teléfono: " + tel);
@@ -119,7 +118,7 @@ public class EventosDAOTest {
         try {
             Lugar l = em.createQuery("SELECT l FROM Lugar l WHERE l.nombre = :nombre AND l.edificio = :edificio ORDER BY l.id DESC", Lugar.class)
                 .setParameter("nombre", nombre).setParameter("edificio", edificio).setMaxResults(1).getSingleResult();
-            lugaresCreadosTest.add(l); // Registrar para limpieza
+            lugaresCreadosTest.add(l); 
             return l;
         } catch(NoResultException e){
             fail("No se pudo recuperar el lugar guardado: " + nombre);

@@ -12,6 +12,7 @@ import itson.entidades.Actividad;
 import itson.entidades.Evento;
 import itson.entidades.Lugar;
 import itson.entidades.Responsable;
+import itson.enums.EstadoEvento;
 import itson.interfaces.IEventosDAO;
 
 public class EventosDAO implements IEventosDAO {
@@ -25,6 +26,7 @@ public class EventosDAO implements IEventosDAO {
         evento.setFechaInicio(eventoDTO.getFechaInicio());
         evento.setFechaFin(eventoDTO.getFechaFin());
         evento.setModalidad(eventoDTO.getModalidad());
+        evento.setEstado(EstadoEvento.PLANEADO);
         Responsable responsable = buscarResponsablePorId(eventoDTO.getResponsableId());
         if (responsable == null) {
             throw new IllegalArgumentException("Responsable no encontrado");

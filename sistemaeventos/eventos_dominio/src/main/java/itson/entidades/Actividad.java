@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -59,14 +58,14 @@ public class Actividad {
     /**
      * Ubicación donde se llevará a cabo la actividad.
      */
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "id_lugar")
     private Lugar lugar;
 
     /**
      * Responsable de la actividad.
      */
-    @OneToMany()
+    @ManyToOne()
     @JoinColumn(name = "id_responsable")
     private Responsable responsable;
 
@@ -80,6 +79,7 @@ public class Actividad {
      * Evento al que pertenece la actividad.
      */
     @ManyToOne()
+    @JoinColumn(name = "id_evento")
     private Evento evento;
     
     /**
