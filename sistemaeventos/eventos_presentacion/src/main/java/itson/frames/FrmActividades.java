@@ -1,6 +1,7 @@
 package itson.frames;
 
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.JOptionPane;
@@ -8,6 +9,7 @@ import javax.swing.JOptionPane;
 import itson.control.ControlFlujo;
 import itson.dtos.ActividadDTO;
 import itson.dtos.EventoDTO;
+import itson.dtos.ParticipanteDTO;
 import itson.excepciones.NegocioException;
 import itson.fabrica.ObjetosNegocioFactory;
 import itson.interfaces.IActividadesBO;
@@ -19,7 +21,8 @@ public class FrmActividades extends javax.swing.JFrame {
 
     private EventoDTO evento;
     private int opcion;
-
+    private List<ParticipanteDTO> participantes;
+    
     public static final int OPCION_VER = 1;
     public static final int OPCION_MODIFICAR = 2;
     public static final int OPCION_ASOCIAR = 3;
@@ -34,6 +37,17 @@ public class FrmActividades extends javax.swing.JFrame {
         cargarOpcion();
     }
 
+    public FrmActividades(EventoDTO evento, int opcion, List<ParticipanteDTO> participantes) {
+        this.evento = evento;
+        this.participantes = participantes;
+        this.opcion = opcion;
+        initComponents();
+        cargarActividades();
+        setTitle("Actividades del Evento");
+        lblTituloEvento.setText(evento.getTitulo());
+        cargarOpcion();
+    }
+    
     private void cargarActividades() {
         try {
             IEventosBO eventosBO = ObjetosNegocioFactory.crearEventosBO();
@@ -44,6 +58,9 @@ public class FrmActividades extends javax.swing.JFrame {
                 ActividadDTO actividad = actividadesBO.buscarActividadPorId(idActividad);
                 if (actividad != null) {
                     PnlActividad actividadPanel = new PnlActividad(actividad, opcion);
+                    if(participantes != null) {
+                        actividadPanel = new PnlActividad(actividad, opcion, participantes);
+                    }
                     boxPnlActividades.add(actividadPanel);
                     boxPnlActividades.add(Box.createVerticalStrut(15));
                 } else {
@@ -247,6 +264,7 @@ public class FrmActividades extends javax.swing.JFrame {
         }
     }// GEN-LAST:event_btnAgregarActividadActionPerformed
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel boxPnlActividades;
     private javax.swing.JButton btnAgregarActividad;

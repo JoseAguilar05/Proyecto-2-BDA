@@ -107,4 +107,21 @@ public class ParticipantesBO implements IParticipantesBO {
         }
     }
 
+    @Override
+    public void asociarActividad(Integer idParticipante, Integer idActividad) throws NegocioException {
+        try {
+            if (idParticipante == null || idActividad == null) {
+                throw new NegocioException("El ID del participante y el ID de la actividad son obligatorios.");
+            }
+            if (idParticipante <= 0 || idActividad <= 0) {
+                throw new NegocioException("El ID del participante y el ID de la actividad deben ser mayores a cero.");
+            }
+            participantesDAO.asociarActividad(idParticipante, idActividad);
+        } catch (SeguridadException e) {
+            throw new NegocioException("Error al asociar la actividad: " + e.getMessage());
+        } catch (Exception e) {
+            throw new NegocioException("Error inesperado al asociar la actividad: " + e.getMessage());
+        }
+    }
+
 }

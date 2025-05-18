@@ -1,6 +1,8 @@
 package paneles;
 
+import java.awt.Cursor;
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -10,19 +12,23 @@ import itson.control.ControlFlujo;
 import itson.control.Formateador;
 import itson.dtos.ActividadDTO;
 import itson.dtos.EventoDTO;
+import itson.dtos.ParticipanteDTO;
 import itson.dtos.ResponsableDTO;
 import itson.enums.EstadoActividad;
 import itson.excepciones.NegocioException;
 import itson.fabrica.ObjetosNegocioFactory;
 import itson.frames.FrmActividades;
+import itson.frames.FrmParticipantes;
 import itson.interfaces.IActividadesBO;
 import itson.interfaces.IEventosBO;
+import itson.interfaces.IParticipantesBO;
 import itson.interfaces.IResponsablesBO;
 
 public class PnlActividad extends javax.swing.JPanel {
 
     private ActividadDTO actividad;
     private int opcion;
+    private List<ParticipanteDTO> listaParticipantes;
 
     public static final int OPCION_VER = 1;
     public static final int OPCION_MODIFICAR = 2;
@@ -30,6 +36,15 @@ public class PnlActividad extends javax.swing.JPanel {
 
     public PnlActividad(ActividadDTO actividad, int opcion) {
         this.actividad = actividad;
+        this.opcion = opcion;
+        initComponents();
+        cargarDatosActividad();
+        cargarOpcion();
+    }
+
+    public PnlActividad(ActividadDTO actividad, int opcion, List<ParticipanteDTO> listaParticipantes) {
+        this.actividad = actividad;
+        this.listaParticipantes = listaParticipantes;
         this.opcion = opcion;
         initComponents();
         cargarDatosActividad();
@@ -55,6 +70,9 @@ public class PnlActividad extends javax.swing.JPanel {
         lblEstado.setText("Estado: " + Formateador.formatearCap(actividad.getEstado().toString()));
         lblDuracion.setText("Duración (mins): " + actividad.getDuracionEstimada());
         lblFechaInicio.setText("Fecha Inicio: " + Formateador.formatearFechaHora(actividad.getFechaInicio()));
+        if (listaParticipantes != null) {
+            this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        }
     }
 
     private void cargarOpcion() {
@@ -80,6 +98,7 @@ public class PnlActividad extends javax.swing.JPanel {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -98,6 +117,11 @@ public class PnlActividad extends javax.swing.JPanel {
         setBackground(new java.awt.Color(244, 246, 247));
         setMaximumSize(new java.awt.Dimension(621, 184));
         setMinimumSize(new java.awt.Dimension(621, 184));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         lblTipo.setFont(new Font("Inter", Font.PLAIN, 14));
         lblTipo.setForeground(new java.awt.Color(0, 0, 0));
@@ -271,6 +295,27 @@ public class PnlActividad extends javax.swing.JPanel {
                                 .addContainerGap(19, Short.MAX_VALUE)));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_formMouseClicked
+        if (listaParticipantes != null) {
+            try {
+                IParticipantesBO participantesBO = ObjetosNegocioFactory.crearParticipantesBO();
+                for (ParticipanteDTO participante : listaParticipantes) {
+                    participantesBO.asociarActividad(participante.getId(), actividad.getId());
+                }
+                JOptionPane.showMessageDialog(this, "Participantes asociados a la actividad correctamente.", "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
+                JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                if (parentFrame != null) {
+                    ControlFlujo.mostrarFrame(new FrmParticipantes());
+                    parentFrame.dispose();
+                }
+            } catch (NegocioException e) {
+                JOptionPane.showMessageDialog(this, "Error al inscribir los participantes: " + e.getMessage(), "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }// GEN-LAST:event_formMouseClicked
+
     private void btnGenerarListaDeAsistenciasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGenerarListaDeAsistenciasActionPerformed
         // TODO: Implementar la lógica para generar la lista de asistencias
     }// GEN-LAST:event_btnGenerarListaDeAsistenciasActionPerformed
@@ -295,6 +340,21 @@ public class PnlActividad extends javax.swing.JPanel {
     }// GEN-LAST:event_btnMarcarFinalizadaActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEliminarActionPerformed
+        try {
+            IEventosBO eventosBO = ObjetosNegocioFactory.crearEventosBO();
+            EventoDTO evento = eventosBO.buscarEventoPorId(actividad.getIdEvento());
+            if (evento.getIdsActividades().size() == 1) {
+                JOptionPane.showMessageDialog(this,
+                        "No se puede eliminar la actividad, ya que es la única asociada al evento.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(this, "Error al obtener el evento: " + e.getMessage(), "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         int respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar la actividad?",
                 "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
         if (respuesta == JOptionPane.YES_OPTION) {
@@ -313,7 +373,7 @@ public class PnlActividad extends javax.swing.JPanel {
     }// GEN-LAST:event_btnEliminarActionPerformed
 
     private void volverACargarFrame() {
-        try{
+        try {
             JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             if (parentFrame != null) {
                 IEventosBO eventosBO = ObjetosNegocioFactory.crearEventosBO();

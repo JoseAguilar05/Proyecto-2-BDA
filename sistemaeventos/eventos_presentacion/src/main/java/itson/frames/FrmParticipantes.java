@@ -309,7 +309,8 @@ public class FrmParticipantes extends javax.swing.JFrame {
         if(participantesSeleccionados.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No se han seleccionado participantes", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "Opción de asociar a actividad no implementada", "Error", JOptionPane.WARNING_MESSAGE);
+            ControlFlujo.mostrarFrame(new FrmEventos(participantesSeleccionados));
+            this.dispose();
         }
     }//GEN-LAST:event_btnAsociarActionPerformed
 

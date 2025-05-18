@@ -12,6 +12,7 @@ import javax.persistence.criteria.Root;
 
 import itson.conexion.ManejadorConexiones;
 import itson.dtos.ParticipanteDTO;
+import itson.entidades.Actividad;
 import itson.entidades.Participante;
 import itson.enums.TipoParticipante;
 import itson.excepciones.SeguridadException;
@@ -266,6 +267,28 @@ public class ParticipantesDAO implements IParticipantesDAO {
                     participante.getNumeroControl()));
         }
         return participantesDTO;
+    }
+
+    @Override
+    public boolean asociarActividad(Integer idParticipante, Integer idActividad) throws SeguridadException {
+        EntityManager entityManager = ManejadorConexiones.obtenerConexion();
+        entityManager.getTransaction().begin();
+        Participante participante = entityManager.find(Participante.class, idParticipante);
+        Actividad actividad = entityManager.find(Actividad.class, idActividad);
+        if (participante != null && actividad != null) {
+            // Verificar si la actividad ya está asociada al participante
+            if (!participante.getActividades().contains(actividad)) {
+                participante.getActividades().add(actividad);
+                actividad.getParticipantes().add(participante);
+                entityManager.merge(participante);
+                entityManager.merge(actividad);
+                entityManager.getTransaction().commit();
+                return true;
+            } else {
+                throw new SeguridadException("La actividad ya está asociada al participante");
+            }
+        }
+        throw new IllegalArgumentException("Participante o actividad no encontrados");
     }
 
 }

@@ -1,6 +1,7 @@
 package paneles;
 
 import java.awt.Font;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -9,17 +10,29 @@ import javax.swing.SwingUtilities;
 import itson.control.ControlFlujo;
 import itson.control.Formateador;
 import itson.dtos.EventoDTO;
+import itson.dtos.ParticipanteDTO;
 import itson.enums.EstadoEvento;
+import itson.frames.FrmActividades;
 import itson.frames.FrmInfoEvento;
 
 public class PnlEvento extends javax.swing.JPanel {
 
     private EventoDTO evento;
+    private List<ParticipanteDTO> participantes;
 
     /**
      * Creates new form PnlEvento
      */
     public PnlEvento(EventoDTO evento) {
+        this.evento = evento;
+        initComponents();
+        cargarDatosEvento();
+    }
+    /**
+     * Creates new form PnlEvento
+     */
+    public PnlEvento(EventoDTO evento, List<ParticipanteDTO> participantes) {
+        this.participantes = participantes;
         this.evento = evento;
         initComponents();
         cargarDatosEvento();
@@ -31,7 +44,11 @@ public class PnlEvento extends javax.swing.JPanel {
         lblFechaFin.setText("Fecha Fin: " + Formateador.formatearFecha(evento.getFechaFin()));
         lblModalidad.setText("Modalidad: " + Formateador.formatearCap(evento.getModalidad().toString()));
         lblEstado.setText("Estado: " + Formateador.formatearCap(evento.getEstado().toString()));
+        if(participantes != null){
+            btnModificar.setVisible(false);
+        }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,16 +64,7 @@ public class PnlEvento extends javax.swing.JPanel {
         lblModalidad = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
         btnVer = new javax.swing.JLabel();
-        btnVer1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        lblTitulo1 = new javax.swing.JLabel();
-        lblFechaInicio1 = new javax.swing.JLabel();
-        lblFechaFin1 = new javax.swing.JLabel();
-        lblModalidad1 = new javax.swing.JLabel();
-        lblEstado1 = new javax.swing.JLabel();
-        btnVer2 = new javax.swing.JLabel();
-        btnVer3 = new javax.swing.JLabel();
+        btnModificar = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(437, 169));
         setMinimumSize(new java.awt.Dimension(437, 169));
@@ -93,11 +101,11 @@ public class PnlEvento extends javax.swing.JPanel {
             }
         });
 
-        btnVer1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btnModificar.png"))); // NOI18N
-        btnVer1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnVer1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btnModificar.png"))); // NOI18N
+        btnModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnModificar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnVer1MouseClicked(evt);
+                btnModificarMouseClicked(evt);
             }
         });
 
@@ -122,7 +130,7 @@ public class PnlEvento extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnVer)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnVer1)))
+                                .addComponent(btnModificar)))
                         .addContainerGap(29, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -144,108 +152,9 @@ public class PnlEvento extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnVer1)
+                            .addComponent(btnModificar)
                             .addComponent(btnVer))
                         .addGap(19, 19, 19))))
-        );
-
-        jPanel3.setBackground(new java.awt.Color(244, 246, 247));
-        jPanel3.setMaximumSize(new java.awt.Dimension(437, 159));
-        jPanel3.setMinimumSize(new java.awt.Dimension(437, 159));
-
-        lblTitulo1.setFont(new Font("Inter", Font.PLAIN, 14));
-        lblTitulo1.setForeground(new java.awt.Color(0, 0, 0));
-        lblTitulo1.setText("Nombre Evento");
-
-        lblFechaInicio1.setFont(new Font("Inter", Font.PLAIN, 14));
-        lblFechaInicio1.setForeground(new java.awt.Color(0, 0, 0));
-        lblFechaInicio1.setText("Fecha Inicio:");
-
-        lblFechaFin1.setFont(new Font("Inter", Font.PLAIN, 14));
-        lblFechaFin1.setForeground(new java.awt.Color(0, 0, 0));
-        lblFechaFin1.setText("Fecha Fin:");
-
-        lblModalidad1.setFont(new Font("Inter", Font.PLAIN, 14));
-        lblModalidad1.setForeground(new java.awt.Color(0, 0, 0));
-        lblModalidad1.setText("Modalidad:");
-
-        lblEstado1.setFont(new Font("Inter", Font.PLAIN, 14));
-        lblEstado1.setForeground(new java.awt.Color(0, 0, 0));
-        lblEstado1.setText("Estado:");
-
-        btnVer2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btnVer.png"))); // NOI18N
-        btnVer2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        btnVer3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btnModificar.png"))); // NOI18N
-        btnVer3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblFechaInicio1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblEstado1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                                    .addComponent(lblFechaFin1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblModalidad1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(btnVer2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnVer3)))
-                        .addContainerGap(29, Short.MAX_VALUE))))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblTitulo1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblFechaInicio1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblFechaFin1)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblModalidad1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblEstado1)
-                        .addContainerGap(28, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnVer3)
-                            .addComponent(btnVer2))
-                        .addGap(19, 19, 19))))
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 437, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 169, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -258,11 +167,6 @@ public class PnlEvento extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,21 +176,20 @@ public class PnlEvento extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseClicked
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        ControlFlujo.mostrarFrame(new FrmInfoEvento(this.evento, FrmInfoEvento.OPCION_VER));
+        if(participantes != null){
+            ControlFlujo.mostrarFrame(new FrmActividades(this.evento, FrmActividades.OPCION_ASOCIAR, participantes));
+        } else {
+            ControlFlujo.mostrarFrame(new FrmInfoEvento(this.evento, FrmInfoEvento.OPCION_VER));
+        }
         frame.dispose();
     }//GEN-LAST:event_btnVerMouseClicked
 
-    private void btnVer1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVer1MouseClicked
+    private void btnModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnModificarMouseClicked
         if(evento.getEstado().equals(EstadoEvento.FINALIZADO)){
             JOptionPane.showMessageDialog(this, "No se puede editar un evento finalizado", "Evento Finalizado", JOptionPane.WARNING_MESSAGE);
             return;
@@ -294,27 +197,17 @@ public class PnlEvento extends javax.swing.JPanel {
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         ControlFlujo.mostrarFrame(new FrmInfoEvento(this.evento, FrmInfoEvento.OPCION_EDITAR));
         frame.dispose();
-
-    }//GEN-LAST:event_btnVer1MouseClicked
+    }//GEN-LAST:event_btnModificarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnModificar;
     private javax.swing.JLabel btnVer;
-    private javax.swing.JLabel btnVer1;
-    private javax.swing.JLabel btnVer2;
-    private javax.swing.JLabel btnVer3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblEstado;
-    private javax.swing.JLabel lblEstado1;
     private javax.swing.JLabel lblFechaFin;
-    private javax.swing.JLabel lblFechaFin1;
     private javax.swing.JLabel lblFechaInicio;
-    private javax.swing.JLabel lblFechaInicio1;
     private javax.swing.JLabel lblModalidad;
-    private javax.swing.JLabel lblModalidad1;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblTitulo1;
     // End of variables declaration//GEN-END:variables
 }

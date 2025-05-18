@@ -11,6 +11,7 @@ import javax.swing.event.DocumentListener;
 import itson.control.ControlFlujo;
 import itson.dtos.BusquedaEventoDTO;
 import itson.dtos.EventoDTO;
+import itson.dtos.ParticipanteDTO;
 import itson.enums.EstadoEvento;
 import itson.enums.ModalidadEvento;
 import itson.fabrica.ObjetosNegocioFactory;
@@ -18,6 +19,8 @@ import itson.interfaces.IEventosBO;
 import paneles.PnlEvento;
 
 public class FrmEventos extends javax.swing.JFrame {
+
+    private List<ParticipanteDTO> participantes;
 
     /**
      * Creates new form FrmEventos
@@ -28,7 +31,15 @@ public class FrmEventos extends javax.swing.JFrame {
         modificarEstados();
         cargarEventos();
         cargarListener();
-        
+    }
+
+    public FrmEventos(List<ParticipanteDTO> participantes) {
+        initComponents();
+        this.participantes = participantes;
+        cargarFiltros();
+        modificarEstados();
+        cargarEventos();
+        cargarListener();
     }
 
     private void cargarFiltros() {
@@ -102,7 +113,12 @@ public class FrmEventos extends javax.swing.JFrame {
     private void cargarEventos(List<EventoDTO> eventos) {
         boxPnlEventos.removeAll();
         for (EventoDTO evento : eventos) {
-            PnlEvento pnlEvento = new PnlEvento(evento);
+            if(participantes != null) {
+                if(evento.getEstado() == EstadoEvento.FINALIZADO) {
+                    continue;
+                }
+            }
+            PnlEvento pnlEvento = new PnlEvento(evento, participantes);
             boxPnlEventos.add(pnlEvento);
             boxPnlEventos.add(Box.createVerticalStrut(10));
         }
@@ -397,7 +413,11 @@ public class FrmEventos extends javax.swing.JFrame {
     }// GEN-LAST:event_txtBuscarMouseExited
 
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnVolverMouseClicked
-        ControlFlujo.iniciarFlujo();
+        if(participantes != null) {
+            ControlFlujo.mostrarFrame(new FrmParticipantes());
+        } else {
+            ControlFlujo.iniciarFlujo();
+        }
         this.dispose();
     }// GEN-LAST:event_btnVolverMouseClicked
 

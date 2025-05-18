@@ -53,5 +53,11 @@ public interface IParticipantesBO {
      */
     List<ParticipanteDTO> obtenerParticipantesPorTipo(String tipo) throws NegocioException;
 
-    
+    /**
+     * Asocia a un participante a una actividad
+     * @param idParticipante ID del participante
+     * @param idActividad ID de la actividad
+     * @throws NegocioException Si ocurre un error al asociar la actividad.
+     */
+    void asociarActividad(Integer idParticipante, Integer idActividad) throws NegocioException;
 }

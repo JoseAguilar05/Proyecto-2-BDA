@@ -1,21 +1,46 @@
 package itson.implementaciones;
 
 import itson.conexion.ManejadorConexiones;
+import itson.dtos.ActividadDTO;
+import itson.dtos.EventoDTO;
+import itson.dtos.LugarDTO;
 import itson.dtos.ParticipanteDTO;
+import itson.dtos.ResponsableDTO;
+import itson.entidades.Actividad;
+import itson.entidades.Evento;
+import itson.entidades.Lugar;
 import itson.entidades.Participante;
+import itson.entidades.Responsable;
+import itson.enums.EstadoActividad;
+import itson.enums.EstadoEvento;
+import itson.enums.ModalidadEvento;
 import itson.enums.TipoParticipante;
+import itson.enums.TipoResponsable;
 import itson.excepciones.SeguridadException;
+import itson.interfaces.IActividadesDAO;
+import itson.interfaces.IEventosDAO;
+import itson.interfaces.ILugaresDAO;
 import itson.interfaces.IParticipantesDAO;
+import itson.interfaces.IResponsablesDAO;
 import itson.seguridad.Seguridad;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -23,29 +48,304 @@ import java.util.List;
  */
 public class ParticipantesDAOTest {
 
-        private final IParticipantesDAO participantesDAO = new ParticipantesDAO();
-        private Participante participanteGuardado;
+    private final IParticipantesDAO participantesDAO = new ParticipantesDAO();
+    private Participante participanteGuardado;
 
-        public ParticipantesDAOTest() {
-        }
+    // DAOs y entidades para pruebas de asociación de actividad
+    private final IActividadesDAO actividadesDAO = new ActividadesDAO();
+    private final IEventosDAO eventosDAO = new EventosDAO();
+    private final ILugaresDAO lugaresDAO = new LugaresDAO();
+    private final IResponsablesDAO responsablesDAO = new ResponsablesDAO();
 
-        @BeforeAll
-        public static void activarModoPruebas() {
-                ManejadorConexiones.activateTestMode();
-        }
+    private Actividad actividadGuardadaParaTest;
+    private Evento eventoPadreActividad;
+    private Lugar lugarActividad;
+    private Responsable responsableActividad;
+    private Responsable responsableEvento; // Responsable para el evento padre
 
-        @AfterAll
-        public static void desactivarModoPruebas() {
-                ManejadorConexiones.deactivateTestMode();
-        }
+    // Listas para limpieza general de entidades creadas en helpers de actividad
+    private List<Lugar> lugaresCreadosTest;
+    private List<Responsable> responsablesCreadosTest;
+    private List<Evento> eventosCreadosTest;
 
-        @AfterEach
-        public void tearDown() {
-                if (participanteGuardado != null) {
-                        participantesDAO.eliminarParticipante(participanteGuardado.getId());
+
+    public ParticipantesDAOTest() {
+    }
+
+    @BeforeAll
+    public static void activarModoPruebas() {
+        ManejadorConexiones.activateTestMode();
+    }
+
+    @AfterAll
+    public static void desactivarModoPruebas() {
+        ManejadorConexiones.deactivateTestMode();
+    }
+
+    @BeforeEach
+    public void setUp() { // Añadir inicialización de nuevas variables
+        participanteGuardado = null;
+        actividadGuardadaParaTest = null;
+        eventoPadreActividad = null;
+        lugarActividad = null;
+        responsableActividad = null;
+        responsableEvento = null;
+
+        lugaresCreadosTest = new ArrayList<>();
+        responsablesCreadosTest = new ArrayList<>();
+        eventosCreadosTest = new ArrayList<>();
+    }
+
+    @AfterEach
+    public void tearDown() {
+        if (participanteGuardado != null && participanteGuardado.getId() != null) {
+            // Desasociar actividades primero si es necesario para evitar constraint violations
+            // Esto depende de cómo esté configurado el borrado en cascada.
+            // Por seguridad, podríamos recargar el participante y limpiar sus actividades.
+            try {
+                EntityManager em = ManejadorConexiones.obtenerConexion();
+                Participante p = em.find(Participante.class, participanteGuardado.getId());
+                if (p != null && p.getActividades() != null && !p.getActividades().isEmpty()) {
+                    em.getTransaction().begin();
+                    // Crear una copia de la lista para evitar ConcurrentModificationException
+                    List<Actividad> actividadesAsociadas = new ArrayList<>(p.getActividades());
+                    for (Actividad act : actividadesAsociadas) {
+                        act.getParticipantes().remove(p); // Quitar de la actividad
+                        p.getActividades().remove(act);   // Quitar del participante
+                        em.merge(act);
+                    }
+                    em.merge(p);
+                    em.getTransaction().commit();
                 }
+                em.close();
+            } catch (Exception e) {
+                System.err.println("Error desasociando actividades del participante " + participanteGuardado.getId() + ": " + e.getMessage());
+            }
+            // Ahora eliminar el participante
+            participantesDAO.eliminarParticipante(participanteGuardado.getId());
+            participanteGuardado = null;
         }
 
+        // Limpieza de la actividad y sus entidades padre
+        if (actividadGuardadaParaTest != null && actividadGuardadaParaTest.getId() != null) {
+            try {
+                EntityManager em = ManejadorConexiones.obtenerConexion();
+                if (em.find(Actividad.class, actividadGuardadaParaTest.getId()) != null) {
+                    actividadesDAO.eliminarActividad(actividadGuardadaParaTest.getId());
+                }
+                em.close();
+            } catch (Exception e) {
+                System.err.println("Error al limpiar actividadGuardadaParaTest con ID " + actividadGuardadaParaTest.getId() + ": " + e.getMessage());
+            }
+            actividadGuardadaParaTest = null;
+        }
+        if (eventoPadreActividad != null && eventoPadreActividad.getId() != null) {
+             try {
+                EntityManager em = ManejadorConexiones.obtenerConexion();
+                if (em.find(Evento.class, eventoPadreActividad.getId()) != null) {
+                    eventosDAO.eliminarEvento(eventoPadreActividad.getId());
+                }
+                em.close();
+            } catch (Exception e) { System.err.println("Error al limpiar eventoPadreActividad: " + e.getMessage()); }
+            eventoPadreActividad = null;
+        }
+        // Los lugares y responsables se limpian a través de las listas generales si fueron creados por helpers
+        // o individualmente si fueron asignados a lugarActividad/responsableActividad/responsableEvento
+
+        if (lugarActividad != null && lugarActividad.getId() != null) {
+            try {
+                EntityManager em = ManejadorConexiones.obtenerConexion();
+                if (em.find(Lugar.class, lugarActividad.getId()) != null) {
+                     lugaresDAO.eliminarLugar(lugarActividad.getId());
+                }
+                em.close();
+            } catch (Exception e) { System.err.println("Error al limpiar lugarActividad: " + e.getMessage()); }
+            lugarActividad = null;
+        }
+        if (responsableActividad != null && responsableActividad.getId() != null) {
+            try {
+                EntityManager em = ManejadorConexiones.obtenerConexion();
+                if (em.find(Responsable.class, responsableActividad.getId()) != null) {
+                    responsablesDAO.eliminarResponsable(responsableActividad.getId());
+                }
+                em.close();
+            } catch (Exception e) { System.err.println("Error al limpiar responsableActividad: " + e.getMessage()); }
+            responsableActividad = null;
+        }
+         if (responsableEvento != null && responsableEvento.getId() != null && (responsableActividad == null || !responsableEvento.getId().equals(responsableActividad.getId()))) {
+            try {
+                EntityManager em = ManejadorConexiones.obtenerConexion();
+                if (em.find(Responsable.class, responsableEvento.getId()) != null) {
+                    responsablesDAO.eliminarResponsable(responsableEvento.getId());
+                }
+                em.close();
+            } catch (Exception e) { System.err.println("Error al limpiar responsableEvento: " + e.getMessage()); }
+            responsableEvento = null;
+        }
+
+
+        // Limpieza de listas generales
+        for (Evento ev : eventosCreadosTest) {
+            if (ev != null && ev.getId() != null && (eventoPadreActividad == null || !ev.getId().equals(eventoPadreActividad.getId()))) {
+                try { eventosDAO.eliminarEvento(ev.getId()); } catch (Exception e) { /* ignore */ }
+            }
+        }
+        for (Lugar lug : lugaresCreadosTest) {
+             if (lug != null && lug.getId() != null && (lugarActividad == null || !lug.getId().equals(lugarActividad.getId()))) {
+                try { lugaresDAO.eliminarLugar(lug.getId()); } catch (Exception e) { /* ignore */ }
+            }
+        }
+        for (Responsable resp : responsablesCreadosTest) {
+            if (resp != null && resp.getId() != null && 
+                (responsableActividad == null || !resp.getId().equals(responsableActividad.getId())) &&
+                (responsableEvento == null || !resp.getId().equals(responsableEvento.getId())) ) {
+                try { responsablesDAO.eliminarResponsable(resp.getId()); } catch (Exception e) { /* ignore */ }
+            }
+        }
+        eventosCreadosTest.clear();
+        lugaresCreadosTest.clear();
+        responsablesCreadosTest.clear();
+    }
+
+    // --- Helper Methods para Actividad y sus padres (adaptados de ActividadesDAOTest) ---
+    private Calendar toCalendar(LocalDateTime localDateTime) {
+        if (localDateTime == null) return null;
+        Date date = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
+    }
+
+    private Responsable crearYGuardarResponsableHelper(String nombre, String tel, TipoResponsable tipo) {
+        ResponsableDTO dto = new ResponsableDTO(null, nombre, "ApTestAsoc", "AmTestAsoc", tel, tipo);
+        responsablesDAO.guardarResponsable(dto); // Asumiendo que guardarResponsable devuelve void o el DTO
+        EntityManager em = ManejadorConexiones.obtenerConexion();
+        try { // Recuperar por un campo único para obtener el ID
+            Responsable r = em.createQuery("SELECT r FROM Responsable r WHERE r.telefono = :tel ORDER BY r.id DESC", Responsable.class)
+                .setParameter("tel", tel).setMaxResults(1).getSingleResult();
+            responsablesCreadosTest.add(r); // Añadir a la lista general para limpieza
+            return r;
+        } catch(NoResultException e){
+            fail("No se pudo recuperar el responsable guardado con teléfono: " + tel); return null;
+        } finally { if(em.isOpen()) em.close(); }
+    }
+
+    private Lugar crearYGuardarLugarHelper(String nombre, String edificio) {
+        LugarDTO dto = new LugarDTO(null, nombre, edificio);
+        lugaresDAO.guardarLugar(dto); // Asumiendo que guardarLugar devuelve void o el DTO
+        EntityManager em = ManejadorConexiones.obtenerConexion();
+        try { // Recuperar por un campo único para obtener el ID
+            Lugar l = em.createQuery("SELECT l FROM Lugar l WHERE l.nombre = :nombre AND l.edificio = :edificio ORDER BY l.id DESC", Lugar.class)
+                .setParameter("nombre", nombre).setParameter("edificio", edificio).setMaxResults(1).getSingleResult();
+            lugaresCreadosTest.add(l); // Añadir a la lista general para limpieza
+            return l;
+        } catch(NoResultException e){
+            fail("No se pudo recuperar el lugar guardado: " + nombre); return null;
+        } finally { if(em.isOpen()) em.close(); }
+    }
+
+    private Evento crearYGuardarEventoHelper(String titulo, Responsable respEvento) {
+        EventoDTO dto = new EventoDTO(null, titulo, "Desc Evento para Asociar Act", toCalendar(LocalDateTime.now().plusDays(5)),
+                                      toCalendar(LocalDateTime.now().plusDays(6)), EstadoEvento.PLANEADO,
+                                      ModalidadEvento.PRESENCIAL, null, respEvento.getId());
+        Evento ev = eventosDAO.guardarEventoConActividades(dto, new ArrayList<>()); // guardarEventoConActividades devuelve Evento
+        eventosCreadosTest.add(ev); // Añadir a la lista general para limpieza
+        return ev;
+    }
+    
+    private Actividad crearYGuardarActividadHelper(String nombreAct, Evento eventoPadre, Lugar lugar, Responsable respActividad) {
+        ActividadDTO dto = new ActividadDTO(null, nombreAct, "CONFERENCIA_ASOC",
+                toCalendar(LocalDateTime.now().plusDays(5).plusHours(1)), 60, 50, EstadoActividad.PLANEADA,
+                lugar.getId(), respActividad.getId(),
+                Collections.emptyList(), eventoPadre.getId());
+        return actividadesDAO.guardarActividad(dto); // guardarActividad devuelve Actividad
+    }
+
+    // --- Tests para asociarActividad ---
+
+    @Test
+    public void testAsociarActividad_Exitoso() throws SeguridadException {
+        System.out.println("asociarActividad_Exitoso");
+
+        // 1. Crear Participante
+        ParticipanteDTO pDto = new ParticipanteDTO("Carlos", "Soto", "Vega", "csoto@test.com", TipoParticipante.ESTUDIANTE, "ISC", "007");
+        participanteGuardado = participantesDAO.registrarParticipante(pDto);
+        assertNotNull(participanteGuardado, "El participante no se pudo guardar.");
+
+        // 2. Crear Actividad (con su Evento, Lugar, Responsable)
+        responsableEvento = crearYGuardarResponsableHelper("Resp EventoAsoc", "707070", TipoResponsable.RESPONSABLE);
+        eventoPadreActividad = crearYGuardarEventoHelper("Evento para Asociar", responsableEvento);
+        lugarActividad = crearYGuardarLugarHelper("Aula Magna Asoc", "Edif Z");
+        responsableActividad = crearYGuardarResponsableHelper("Ponente ActAsoc", "808080", TipoResponsable.PONENTE);
+        actividadGuardadaParaTest = crearYGuardarActividadHelper("Charla de IA", eventoPadreActividad, lugarActividad, responsableActividad);
+        assertNotNull(actividadGuardadaParaTest, "La actividad no se pudo guardar.");
+
+        // 3. Asociar
+        boolean resultado = participantesDAO.asociarActividad(participanteGuardado.getId(), actividadGuardadaParaTest.getId());
+        assertTrue(resultado, "La asociación debería ser exitosa.");
+
+        // 4. Verificar asociación en BD
+        EntityManager em = ManejadorConexiones.obtenerConexion();
+        Participante pVerificado = em.find(Participante.class, participanteGuardado.getId());
+        Actividad aVerificada = em.find(Actividad.class, actividadGuardadaParaTest.getId());
+        em.close();
+
+        assertNotNull(pVerificado, "El participante no se encontró después de la asociación.");
+        assertNotNull(aVerificada, "La actividad no se encontró después de la asociación.");
+
+        assertTrue(pVerificado.getActividades().stream().anyMatch(a -> a.getId().equals(actividadGuardadaParaTest.getId())),
+                "La actividad no está en la lista del participante.");
+        assertTrue(aVerificada.getParticipantes().stream().anyMatch(p -> p.getId().equals(participanteGuardado.getId())),
+                "El participante no está en la lista de la actividad.");
+    }
+
+    @Test
+    public void testAsociarActividad_YaAsociada() throws SeguridadException {
+        System.out.println("asociarActividad_YaAsociada");
+        // 1. Crear y asociar una vez
+        ParticipanteDTO pDto = new ParticipanteDTO("Laura", "Kent", "Lane", "lkent@test.com", TipoParticipante.EXTERNO, null, null);
+        participanteGuardado = participantesDAO.registrarParticipante(pDto);
+        responsableEvento = crearYGuardarResponsableHelper("Resp EventoYaAsoc", "717171", TipoResponsable.RESPONSABLE);
+        eventoPadreActividad = crearYGuardarEventoHelper("Evento Ya Asociado", responsableEvento);
+        lugarActividad = crearYGuardarLugarHelper("Sala Ya Asoc", "Edif Y");
+        responsableActividad = crearYGuardarResponsableHelper("Ponente Ya Asoc", "818181", TipoResponsable.PONENTE);
+        actividadGuardadaParaTest = crearYGuardarActividadHelper("Taller Avanzado", eventoPadreActividad, lugarActividad, responsableActividad);
+        
+        participantesDAO.asociarActividad(participanteGuardado.getId(), actividadGuardadaParaTest.getId()); // Primera asociación
+
+        // 2. Intentar asociar de nuevo y esperar SeguridadException
+        SeguridadException exception = assertThrows(SeguridadException.class, () -> {
+            participantesDAO.asociarActividad(participanteGuardado.getId(), actividadGuardadaParaTest.getId());
+        });
+        assertEquals("La actividad ya está asociada al participante", exception.getMessage());
+    }
+
+    @Test
+    public void testAsociarActividad_ParticipanteNoEncontrado() throws SeguridadException {
+        System.out.println("asociarActividad_ParticipanteNoEncontrado");
+        responsableEvento = crearYGuardarResponsableHelper("Resp EventoPNE", "727272", TipoResponsable.RESPONSABLE);
+        eventoPadreActividad = crearYGuardarEventoHelper("Evento Part No Enc", responsableEvento);
+        lugarActividad = crearYGuardarLugarHelper("Aula PNE", "Edif X");
+        responsableActividad = crearYGuardarResponsableHelper("Ponente PNE", "828282", TipoResponsable.PONENTE);
+        actividadGuardadaParaTest = crearYGuardarActividadHelper("Curso Básico", eventoPadreActividad, lugarActividad, responsableActividad);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            participantesDAO.asociarActividad(-999, actividadGuardadaParaTest.getId()); // ID Participante inexistente
+        });
+        assertEquals("Participante o actividad no encontrados", exception.getMessage());
+    }
+
+    @Test
+    public void testAsociarActividad_ActividadNoEncontrada() throws SeguridadException {
+        System.out.println("asociarActividad_ActividadNoEncontrada");
+        ParticipanteDTO pDto = new ParticipanteDTO("Pedro", "Ramirez", "Solis", "pramirez@test.com", TipoParticipante.DOCENTE, "Sociales", null);
+        participanteGuardado = participantesDAO.registrarParticipante(pDto);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            participantesDAO.asociarActividad(participanteGuardado.getId(), -998); // ID Actividad inexistente
+        });
+        assertEquals("Participante o actividad no encontrados", exception.getMessage());
+    }
         /**
          * Test of registrarParticipante method, of class ParticipantesDAO.
          */

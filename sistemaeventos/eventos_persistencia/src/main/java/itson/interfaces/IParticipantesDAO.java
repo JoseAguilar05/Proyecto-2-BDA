@@ -23,6 +23,6 @@ public interface IParticipantesDAO {
 
     boolean eliminarParticipante(Integer id) ;
 
-
+    boolean asociarActividad(Integer idParticipante, Integer idActividad) throws SeguridadException;
 
 }
