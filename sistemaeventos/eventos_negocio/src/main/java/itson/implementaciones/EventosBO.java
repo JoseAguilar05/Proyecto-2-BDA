@@ -6,6 +6,7 @@ import itson.dtos.ActividadDTO;
 import itson.dtos.BusquedaEventoDTO;
 import itson.dtos.EventoDTO;
 import itson.entidades.Evento;
+import itson.enums.EstadoEvento;
 import itson.excepciones.NegocioException;
 import itson.interfaces.IEventosBO;
 import itson.interfaces.IEventosDAO;
@@ -49,6 +50,30 @@ public class EventosBO implements IEventosBO {
     public List<EventoDTO> buscarEventosPorFiltro(BusquedaEventoDTO filtro) {
         List<EventoDTO> eventos = eventosDAO.buscarEventosPorFiltro(filtro);
         return eventos;
+    }
+
+    @Override
+    public boolean modificarEstadoEvento(Integer idEvento, EstadoEvento estadoEvento) throws NegocioException {
+        if (idEvento == null || estadoEvento == null) {
+            throw new NegocioException("El ID del evento y el estado no pueden ser nulos");
+        }
+        boolean resultado = eventosDAO.modificarEstadoEvento(idEvento, estadoEvento);
+        if (!resultado) {
+            throw new NegocioException("Error al modificar el estado del evento");
+        }
+        return resultado;
+    }
+
+    @Override
+    public boolean modificarEvento(EventoDTO eventoDTO) throws NegocioException {
+        if (eventoDTO == null) {
+            throw new NegocioException("El evento no puede ser nulo");
+        }
+        Evento evento = eventosDAO.modificarEvento(eventoDTO);
+        if (evento == null) {
+            throw new NegocioException("Error al modificar el evento");
+        }
+        return true;
     }
 
 }

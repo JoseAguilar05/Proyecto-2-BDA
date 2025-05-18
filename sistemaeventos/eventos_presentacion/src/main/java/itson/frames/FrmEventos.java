@@ -25,8 +25,10 @@ public class FrmEventos extends javax.swing.JFrame {
     public FrmEventos() {
         initComponents();
         cargarFiltros();
+        modificarEstados();
         cargarEventos();
         cargarListener();
+        
     }
 
     private void cargarFiltros() {
@@ -75,6 +77,26 @@ public class FrmEventos extends javax.swing.JFrame {
         fechaDesde.addPropertyChangeListener(evt -> buscar());
         fechaHasta.addPropertyChangeListener(evt -> buscar());
 
+    }
+
+    private void modificarEstados() {
+        IEventosBO eventosBO = ObjetosNegocioFactory.crearEventosBO();
+        List<EventoDTO> eventos = eventosBO.obtenerEventos();
+        for (EventoDTO evento : eventos) {
+            Calendar fechaInicio = evento.getFechaInicio();
+            Calendar fechaFin = evento.getFechaFin();
+            Calendar fechaActual = Calendar.getInstance();
+            try{
+                if (fechaActual.after(fechaFin)) {
+                    eventosBO.modificarEstadoEvento(evento.getId(), EstadoEvento.FINALIZADO);
+                } else if (fechaActual.after(fechaInicio) && fechaActual.before(fechaFin)) {
+                    eventosBO.modificarEstadoEvento(evento.getId(), EstadoEvento.EN_CURSO);
+                }
+            } catch (Exception e) {
+                // Manejar la excepción según sea necesario
+                System.out.println("Error al modificar el estado del evento: " + e.getMessage());
+            }
+        }
     }
 
     private void cargarEventos(List<EventoDTO> eventos) {
@@ -404,7 +426,7 @@ public class FrmEventos extends javax.swing.JFrame {
         if (!estadoStr.equals("SELECCIONAR...")) {
             estado = EstadoEvento.valueOf(estadoStr);
         }
-        if (filtro.isEmpty()) {
+        if (filtro.isBlank() || filtro.equals("Buscar...")) {
             filtro = null;
         }
         Calendar fechaDesde = toCalendar(this.fechaDesde.getDate());

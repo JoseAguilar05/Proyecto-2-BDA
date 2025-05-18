@@ -519,4 +519,96 @@ public class EventosDAOTest {
         assertEquals(4, resultados.size(), "Deberían devolverse todos los eventos si el filtro está vacío.");
     }
 
+        @Test
+    public void testModificarEstadoEvento_Exitoso() {
+        System.out.println("modificarEstadoEvento_Exitoso");
+        // 1. Crear y guardar un evento de prueba
+        Responsable orgEvento = crearYGuardarResponsable("Org ModificarEstado", "101010", TipoResponsable.RESPONSABLE);
+        EventoDTO eventoParaGuardar = new EventoDTO(null, "Evento para Modificar Estado", "Desc Modificar",
+                toCalendar(LocalDateTime.now().plusDays(1)), toCalendar(LocalDateTime.now().plusDays(2)),
+                EstadoEvento.PLANEADO, ModalidadEvento.PRESENCIAL, null, orgEvento.getId());
+        
+        // Guardar el evento y asignarlo a eventoGuardado para limpieza automática en tearDown
+        eventoGuardado = eventosDAO.guardarEventoConActividades(eventoParaGuardar, new ArrayList<>());
+        assertNotNull(eventoGuardado, "El evento base para modificar estado no se pudo guardar.");
+        assertNotNull(eventoGuardado.getId(), "El ID del evento guardado es nulo.");
+        assertEquals(EstadoEvento.PLANEADO, eventoGuardado.getEstado(), "El estado inicial del evento no es el esperado.");
+
+        // 2. Modificar el estado del evento
+        EstadoEvento nuevoEstado = EstadoEvento.EN_CURSO;
+        boolean resultadoModificacion = eventosDAO.modificarEstadoEvento(eventoGuardado.getId(), nuevoEstado);
+        assertTrue(resultadoModificacion, "La modificación del estado del evento debería ser exitosa.");
+
+        // 3. Verificar que el estado se haya actualizado en la base de datos
+        // Es importante obtener una nueva instancia del EntityManager para asegurar que no estamos leyendo de la caché de primer nivel.
+        EntityManager emVerificacion = ManejadorConexiones.obtenerConexion();
+        Evento eventoVerificado = emVerificacion.find(Evento.class, eventoGuardado.getId());
+        emVerificacion.close(); // Cerrar el EntityManager de verificación
+
+        assertNotNull(eventoVerificado, "No se pudo encontrar el evento después de intentar modificar su estado.");
+        assertEquals(nuevoEstado, eventoVerificado.getEstado(), "El estado del evento no se actualizó correctamente en la BD.");
+    }
+    
+    @Test
+    public void testModificarEvento_Exitoso_CambioSimple() {
+        System.out.println("modificarEvento_Exitoso_CambioSimple");
+        // 1. Crear y guardar un evento de prueba
+        Responsable orgOriginal = crearYGuardarResponsable("Org Original Mod", "202020", TipoResponsable.RESPONSABLE);
+        EventoDTO eventoOriginalDTO = new EventoDTO(null, "Evento Original", "Descripción Original",
+                toCalendar(LocalDateTime.now().plusDays(10)), toCalendar(LocalDateTime.now().plusDays(11)),
+                EstadoEvento.PLANEADO, ModalidadEvento.PRESENCIAL, null, orgOriginal.getId());
+        
+        eventoGuardado = eventosDAO.guardarEventoConActividades(eventoOriginalDTO, new ArrayList<>());
+        assertNotNull(eventoGuardado, "El evento original no se pudo guardar.");
+        assertNotNull(eventoGuardado.getId(), "El ID del evento original es nulo.");
+
+        // 2. Preparar el DTO con las modificaciones
+        EventoDTO eventoModificadoDTO = new EventoDTO(
+                eventoGuardado.getId(), // ID del evento a modificar
+                "Evento Modificado",    // Nuevo título
+                "Descripción Modificada", // Nueva descripción
+                toCalendar(LocalDateTime.now().plusDays(12)), // Nueva fecha de inicio
+                toCalendar(LocalDateTime.now().plusDays(13)), // Nueva fecha de fin
+                EstadoEvento.PLANEADO, // Nuevo estado
+                ModalidadEvento.EN_LINEA, // Nueva modalidad
+                null, // Lista de actividades (no se modifica en este método)
+                orgOriginal.getId() // ID del responsable (no se modifica en este método directamente)
+        );
+
+        // 3. Ejecutar la modificación
+        Evento eventoResultado = eventosDAO.modificarEvento(eventoModificadoDTO);
+        assertNotNull(eventoResultado, "El método modificarEvento no debería devolver null en caso de éxito.");
+        assertEquals(eventoGuardado.getId(), eventoResultado.getId(), "El ID del evento modificado no coincide.");
+
+        // 4. Verificar los cambios en la base de datos
+        EntityManager emVerificacion = ManejadorConexiones.obtenerConexion();
+        Evento eventoVerificado = emVerificacion.find(Evento.class, eventoGuardado.getId());
+        emVerificacion.close();
+
+        assertNotNull(eventoVerificado, "No se pudo encontrar el evento después de la modificación.");
+        assertEquals("Evento Modificado", eventoVerificado.getTitulo());
+        assertEquals("Descripción Modificada", eventoVerificado.getDescripcion());
+        // Para comparar Calendar, es mejor convertir a un formato comparable o comparar campos individuales
+        assertEquals(eventoModificadoDTO.getFechaInicio().getTimeInMillis() / 1000, eventoVerificado.getFechaInicio().getTimeInMillis() / 1000);
+        assertEquals(eventoModificadoDTO.getFechaFin().getTimeInMillis() / 1000, eventoVerificado.getFechaFin().getTimeInMillis() / 1000);
+        assertEquals(EstadoEvento.PLANEADO, eventoVerificado.getEstado());
+        assertEquals(ModalidadEvento.EN_LINEA, eventoVerificado.getModalidad());
+        // Verificar que el responsable no cambió (ya que el método no lo modifica)
+        assertEquals(orgOriginal.getId(), eventoVerificado.getResponsable().getId());
+    }
+
+    @Test
+    public void testModificarEvento_EventoNoEncontrado() {
+        System.out.println("modificarEvento_EventoNoEncontrado");
+        EventoDTO dtoInexistente = new EventoDTO(
+                -998, // ID Inexistente
+                "Título Inexistente", "Desc Inexistente",
+                toCalendar(LocalDateTime.now()), toCalendar(LocalDateTime.now().plusDays(1)),
+                EstadoEvento.PLANEADO, ModalidadEvento.PRESENCIAL, null, 1
+        );
+
+        Evento eventoResultado = eventosDAO.modificarEvento(dtoInexistente);
+        assertNull(eventoResultado, "Modificar un evento inexistente debería devolver null.");
+    }
+
 }

@@ -17,6 +17,7 @@ import itson.entidades.Actividad;
 import itson.entidades.Evento;
 import itson.entidades.Lugar;
 import itson.entidades.Responsable;
+import itson.enums.EstadoEvento;
 import itson.interfaces.IEventosDAO;
 
 public class EventosDAO implements IEventosDAO {
@@ -224,5 +225,60 @@ public class EventosDAO implements IEventosDAO {
             e.printStackTrace();
         }
         return eventosDTO;
+    }
+
+    @Override
+    public boolean modificarEstadoEvento(Integer idEvento, EstadoEvento estadoEvento) {
+        EntityManager entityManager = ManejadorConexiones.obtenerConexion();
+        try {
+            entityManager.getTransaction().begin();
+            Evento evento = entityManager.find(Evento.class, idEvento);
+            if (evento != null) {
+                evento.setEstado(estadoEvento);
+                entityManager.merge(evento);
+                entityManager.getTransaction().commit();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
+    public Evento modificarEvento(EventoDTO eventoDTO) {
+        EntityManager entityManager = ManejadorConexiones.obtenerConexion();
+        try {
+            entityManager.getTransaction().begin();
+            Evento evento = entityManager.find(Evento.class, eventoDTO.getId());
+            if (evento != null) {
+                evento.setTitulo(eventoDTO.getTitulo());
+                evento.setDescripcion(eventoDTO.getDescripcion());
+                evento.setFechaInicio(eventoDTO.getFechaInicio());
+                evento.setFechaFin(eventoDTO.getFechaFin());
+                evento.setModalidad(eventoDTO.getModalidad());
+                evento.setEstado(eventoDTO.getEstado());
+                entityManager.merge(evento);
+                entityManager.getTransaction().commit();
+                return evento;
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return null;
+        } finally {
+            entityManager.close();
+        }
     }
 }

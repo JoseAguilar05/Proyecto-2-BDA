@@ -2,6 +2,7 @@ itson\enums\ModalidadEvento.class
 itson\enums\EstadoEvento.class
 itson\dtos\ResponsableDTO.class
 itson\entidades\Responsable.class
+itson\dtos\BusquedaEventoDTO.class
 itson\dtos\LugarDTO.class
 itson\dtos\ParticipanteDTO.class
 itson\entidades\Actividad.class

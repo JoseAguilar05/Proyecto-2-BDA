@@ -2,8 +2,15 @@ package paneles;
 
 import java.awt.Font;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
+import itson.control.ControlFlujo;
 import itson.control.Formateador;
 import itson.dtos.EventoDTO;
+import itson.enums.EstadoEvento;
+import itson.frames.FrmInfoEvento;
 
 public class PnlEvento extends javax.swing.JPanel {
 
@@ -80,9 +87,19 @@ public class PnlEvento extends javax.swing.JPanel {
 
         btnVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btnVer.png"))); // NOI18N
         btnVer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVerMouseClicked(evt);
+            }
+        });
 
         btnVer1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btnModificar.png"))); // NOI18N
         btnVer1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVer1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVer1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -262,6 +279,23 @@ public class PnlEvento extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseClicked
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        ControlFlujo.mostrarFrame(new FrmInfoEvento(this.evento, FrmInfoEvento.OPCION_VER));
+        frame.dispose();
+    }//GEN-LAST:event_btnVerMouseClicked
+
+    private void btnVer1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVer1MouseClicked
+        if(evento.getEstado().equals(EstadoEvento.FINALIZADO)){
+            JOptionPane.showMessageDialog(this, "No se puede editar un evento finalizado", "Evento Finalizado", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        ControlFlujo.mostrarFrame(new FrmInfoEvento(this.evento, FrmInfoEvento.OPCION_EDITAR));
+        frame.dispose();
+
+    }//GEN-LAST:event_btnVer1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

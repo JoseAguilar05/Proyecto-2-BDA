@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="itson.implementaciones.ParticipantesDAOTest" time="0.467" tests="9" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="itson.implementaciones.ParticipantesDAOTest" time="0.423" tests="9" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="MX"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\pc\AppData\Local\Temp\surefire871415163706169726\surefirebooter-20250518002042057_3.jar C:\Users\pc\AppData\Local\Temp\surefire871415163706169726 2025-05-18T00-20-40_196-jvmRun1 surefire-20250518002042057_1tmp surefire_0-20250518002042057_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\pc\AppData\Local\Temp\surefire8863683477649764623\surefirebooter-20250518080107512_3.jar C:\Users\pc\AppData\Local\Temp\surefire8863683477649764623 2025-05-18T08-01-05_366-jvmRun1 surefire-20250518080107512_1tmp surefire_0-20250518080107512_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\target\test-classes;C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\target\classes;C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_dominio\target\eventos_dominio-1.0-SNAPSHOT.jar;C:\Users\pc\.m2\repository\com\mysql\mysql-connector-j\9.3.0\mysql-connector-j-9.3.0.jar;C:\Users\pc\.m2\repository\com\google\protobuf\protobuf-java\4.29.0\protobuf-java-4.29.0.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.core\2.7.12\org.eclipse.persistence.core-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.asm\9.4.0\org.eclipse.persistence.asm-9.4.0.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.antlr\2.7.12\org.eclipse.persistence.antlr-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa\2.7.12\org.eclipse.persistence.jpa-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa.jpql\2.7.12\org.eclipse.persistence.jpa.jpql-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.moxy\2.7.12\org.eclipse.persistence.moxy-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\jakarta.persistence\2.2.3\jakarta.persistence-2.2.3.jar;C:\Users\pc\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\pc\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\pc\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\pc\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\pc\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.3\junit-jupiter-params-5.10.3.jar;C:\Users\pc\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\pc\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\pc\AppData\Local\Temp\surefire871415163706169726\surefirebooter-20250518002042057_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\pc\AppData\Local\Temp\surefire8863683477649764623\surefirebooter-20250518080107512_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.6+8-LTS-188"/>
@@ -59,39 +59,39 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testObtenerParticipantes" classname="itson.implementaciones.ParticipantesDAOTest" time="0.029">
+  <testcase name="testObtenerParticipantes" classname="itson.implementaciones.ParticipantesDAOTest" time="0.04">
     <system-out><![CDATA[obtenerParticipantes
 ]]></system-out>
   </testcase>
-  <testcase name="testRegistrarParticipanteEstudiante" classname="itson.implementaciones.ParticipantesDAOTest" time="0.019">
+  <testcase name="testRegistrarParticipanteEstudiante" classname="itson.implementaciones.ParticipantesDAOTest" time="0.02">
     <system-out><![CDATA[registrarParticipante
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerParticipantePorId" classname="itson.implementaciones.ParticipantesDAOTest" time="0.023">
+  <testcase name="testObtenerParticipantePorId" classname="itson.implementaciones.ParticipantesDAOTest" time="0.022">
     <system-out><![CDATA[obtenerParticipantePorId
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerParticipantesConFiltroYTipo" classname="itson.implementaciones.ParticipantesDAOTest" time="0.172">
+  <testcase name="testObtenerParticipantesConFiltroYTipo" classname="itson.implementaciones.ParticipantesDAOTest" time="0.138">
     <system-out><![CDATA[obtenerParticipantesConFiltroYTipo
 ]]></system-out>
   </testcase>
-  <testcase name="testRegistrarParticipanteProfesor" classname="itson.implementaciones.ParticipantesDAOTest" time="0.017">
+  <testcase name="testRegistrarParticipanteProfesor" classname="itson.implementaciones.ParticipantesDAOTest" time="0.018">
     <system-out><![CDATA[registrarParticipante
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerParticipantesConFiltro" classname="itson.implementaciones.ParticipantesDAOTest" time="0.077">
+  <testcase name="testObtenerParticipantesConFiltro" classname="itson.implementaciones.ParticipantesDAOTest" time="0.065">
     <system-out><![CDATA[obtenerParticipantesConFiltro
 ]]></system-out>
   </testcase>
-  <testcase name="testRegistrarParticipanteExterno" classname="itson.implementaciones.ParticipantesDAOTest" time="0.022">
+  <testcase name="testRegistrarParticipanteExterno" classname="itson.implementaciones.ParticipantesDAOTest" time="0.018">
     <system-out><![CDATA[registrarParticipante
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerParticipantesPorTipo" classname="itson.implementaciones.ParticipantesDAOTest" time="0.08">
+  <testcase name="testObtenerParticipantesPorTipo" classname="itson.implementaciones.ParticipantesDAOTest" time="0.075">
     <system-out><![CDATA[obtenerParticipantesPorTipo
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerParticipantePorIdNoExistente" classname="itson.implementaciones.ParticipantesDAOTest" time="0.02">
+  <testcase name="testObtenerParticipantePorIdNoExistente" classname="itson.implementaciones.ParticipantesDAOTest" time="0.021">
     <system-out><![CDATA[obtenerParticipantePorId
 ]]></system-out>
   </testcase>

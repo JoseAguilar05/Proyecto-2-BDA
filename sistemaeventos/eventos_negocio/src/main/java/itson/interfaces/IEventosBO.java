@@ -5,6 +5,7 @@ import java.util.List;
 import itson.dtos.ActividadDTO;
 import itson.dtos.BusquedaEventoDTO;
 import itson.dtos.EventoDTO;
+import itson.enums.EstadoEvento;
 import itson.excepciones.NegocioException;
 
 public interface IEventosBO {
@@ -36,4 +37,21 @@ public interface IEventosBO {
      * @return Lista de eventos que cumplen con el filtro.
      */
     List<EventoDTO> buscarEventosPorFiltro(BusquedaEventoDTO filtro);
+
+    /**
+     * Modifica el estado de un evento.
+     * @param idEvento El ID del evento a modificar.
+     * @param estadoEvento El nuevo estado del evento.
+     * @return true si se modificó correctamente, false en caso contrario.
+     * @throws NegocioException si ocurre un error al modificar el estado del evento.
+     */
+    boolean modificarEstadoEvento(Integer idEvento, EstadoEvento estadoEvento) throws NegocioException;
+
+    /**
+     * Modifica un evento en la base de datos.
+     *
+     * @param eventoDTO El evento a modificar.
+     * @return true si se modificó correctamente, false en caso contrario.
+     */
+    boolean modificarEvento(EventoDTO eventoDTO) throws NegocioException;
 }

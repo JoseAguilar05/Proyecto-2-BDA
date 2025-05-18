@@ -201,6 +201,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnVerMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="btnVer1">
           <Properties>
@@ -211,6 +214,9 @@
               <Color id="Hand Cursor"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnVer1MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -6,6 +6,7 @@ import itson.dtos.ActividadDTO;
 import itson.dtos.BusquedaEventoDTO;
 import itson.dtos.EventoDTO;
 import itson.entidades.Evento;
+import itson.enums.EstadoEvento;
 
 public interface IEventosDAO {
 
@@ -45,4 +46,20 @@ public interface IEventosDAO {
      * @return Lista de eventos que cumplen con el filtro.
      */
     List<EventoDTO> buscarEventosPorFiltro(BusquedaEventoDTO filtro);
+
+    /**
+     * Modifica el estado de un evento.
+     *
+     * @param idEvento El ID del evento a modificar.
+     * @param estadoEvento El nuevo estado del evento.
+     * @return true si se modificó correctamente, false en caso contrario.
+     */
+    boolean modificarEstadoEvento(Integer idEvento, EstadoEvento estadoEvento);
+
+    /**
+     * Modifica un evento en la base de datos.
+     * @param eventoDTO El evento a modificar con los nuevos datos.
+     * @return El evento modificado.
+     */
+    Evento modificarEvento(EventoDTO eventoDTO);
 }

@@ -1,5 +1,6 @@
 package itson.control;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 public class Formateador {
@@ -29,6 +30,12 @@ public class Formateador {
         sb.append("/");
         sb.append(fecha.get(Calendar.DAY_OF_MONTH));
         return sb.toString();
+    }
+    
+    public static Calendar toCalendar(LocalDate fecha) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(fecha.getYear(), fecha.getMonthValue() - 1, fecha.getDayOfMonth());
+        return calendar;
     }
 
 }
