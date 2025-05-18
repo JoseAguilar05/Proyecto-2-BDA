@@ -31,6 +31,20 @@ public class Formateador {
         sb.append(fecha.get(Calendar.DAY_OF_MONTH));
         return sb.toString();
     }
+
+    public static String formatearFechaHora(Calendar fecha) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(fecha.get(Calendar.YEAR));
+        sb.append("/");
+        sb.append(fecha.get(Calendar.MONTH) + 1);
+        sb.append("/");
+        sb.append(fecha.get(Calendar.DAY_OF_MONTH));
+        sb.append(" ");
+        sb.append(fecha.get(Calendar.HOUR_OF_DAY));
+        sb.append(":");
+        sb.append(fecha.get(Calendar.MINUTE));
+        return sb.toString();
+    }
     
     public static Calendar toCalendar(LocalDate fecha) {
         Calendar calendar = Calendar.getInstance();

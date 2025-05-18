@@ -47,6 +47,7 @@ public class EventosDAO implements IEventosDAO {
             actividadEntity.setDuracionEstimada(actividad.getDuracionEstimada());
             actividadEntity.setEstado(actividad.getEstado());
             actividadEntity.setCapacidadMaxima(actividad.getCapacidadMaxima());
+            actividadEntity.setEvento(evento);
             Lugar lugar = buscarLugarPorId(actividad.getLugarId());
             if (lugar == null) {
                 throw new IllegalArgumentException("Lugar no encontrado");

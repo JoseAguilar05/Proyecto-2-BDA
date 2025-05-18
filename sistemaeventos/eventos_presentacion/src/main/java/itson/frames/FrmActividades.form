@@ -122,7 +122,7 @@
                           <Group type="102" attributes="0">
                               <Component id="lblNombre" min="-2" pref="61" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="lblNombre1" min="-2" pref="502" max="-2" attributes="0"/>
+                              <Component id="lblTituloEvento" min="-2" pref="502" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="25" max="32767" attributes="0"/>
@@ -135,7 +135,7 @@
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblNombre" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                          <Component id="lblNombre1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="lblTituloEvento" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="322" max="-2" attributes="0"/>
@@ -156,7 +156,7 @@
                 <Property name="text" type="java.lang.String" value="Evento:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblNombre1">
+            <Component class="javax.swing.JLabel" name="lblTituloEvento">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 16)" type="code"/>
@@ -172,6 +172,7 @@
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
+                <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
               </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>

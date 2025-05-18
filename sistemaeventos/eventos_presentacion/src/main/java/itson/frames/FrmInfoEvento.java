@@ -352,7 +352,12 @@ public class FrmInfoEvento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverMouseClicked
 
     private void btnVerActividadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActividadesActionPerformed
-        // TODO add your handling code here:
+        if(opcion == OPCION_VER){
+            ControlFlujo.mostrarFrame(new FrmActividades(evento, FrmActividades.OPCION_VER));
+        } else {
+            ControlFlujo.mostrarFrame(new FrmActividades(evento, FrmActividades.OPCION_MODIFICAR));
+        }
+        this.dispose();
     }//GEN-LAST:event_btnVerActividadesActionPerformed
 
     private void btnFinalizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizadoActionPerformed

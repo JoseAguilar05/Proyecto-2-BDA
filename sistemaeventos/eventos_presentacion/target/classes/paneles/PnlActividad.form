@@ -5,6 +5,12 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="f7" green="f6" red="f4" type="rgb"/>
     </Property>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[621, 184]"/>
+    </Property>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[621, 184]"/>
+    </Property>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -27,30 +33,30 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnGenerarListaDeAsistencias" min="-2" pref="224" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnGenerarListaDeAsistencias1" min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="btnEliminar" min="-2" pref="95" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnMarcarFinalizada" min="-2" pref="223" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblEstado1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblModalidad1" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
+                              <Component id="lblCapacidad" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblPonente" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblEstado" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblModalidad" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
+                              <Component id="lblTipo" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblNombre" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblEstado2" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblModalidad2" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
+                              <Component id="lblOcupacion" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblEstado" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblEstado3" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblModalidad3" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
+                              <Component id="lblDuracion" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblFechaInicio" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -65,37 +71,37 @@
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblModalidad3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFechaInicio" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblEstado3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblModalidad2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblEstado2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="lblModalidad" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblDuracion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="lblEstado" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblModalidad1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblOcupacion" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="lblEstado1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTipo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblPonente" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="lblCapacidad" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnGenerarListaDeAsistencias" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="btnEliminar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="btnMarcarFinalizada" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btnGenerarListaDeAsistencias1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblEstado">
+    <Component class="javax.swing.JLabel" name="lblTipo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 14)" type="code"/>
@@ -106,7 +112,7 @@
         <Property name="text" type="java.lang.String" value="Tipo:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblModalidad">
+    <Component class="javax.swing.JLabel" name="lblNombre">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 14)" type="code"/>
@@ -117,7 +123,7 @@
         <Property name="text" type="java.lang.String" value="Actividad:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblEstado1">
+    <Component class="javax.swing.JLabel" name="lblCapacidad">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 14)" type="code"/>
@@ -128,7 +134,7 @@
         <Property name="text" type="java.lang.String" value="Capacidad m&#xe1;xima: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblModalidad1">
+    <Component class="javax.swing.JLabel" name="lblPonente">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 14)" type="code"/>
@@ -139,7 +145,7 @@
         <Property name="text" type="java.lang.String" value="Ponente:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblEstado2">
+    <Component class="javax.swing.JLabel" name="lblOcupacion">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 14)" type="code"/>
@@ -151,7 +157,7 @@
         <Property name="text" type="java.lang.String" value="Ocupaci&#xf3;n: "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblModalidad2">
+    <Component class="javax.swing.JLabel" name="lblEstado">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 14)" type="code"/>
@@ -163,7 +169,7 @@
         <Property name="text" type="java.lang.String" value="Estado:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblEstado3">
+    <Component class="javax.swing.JLabel" name="lblDuracion">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 14)" type="code"/>
@@ -175,7 +181,7 @@
         <Property name="text" type="java.lang.String" value="Duraci&#xf3;n (mins)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblModalidad3">
+    <Component class="javax.swing.JLabel" name="lblFechaInicio">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 14)" type="code"/>
@@ -193,7 +199,7 @@
           <Color blue="f5" green="a5" red="42" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 18)" type="code"/>
+          <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 14)" type="code"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -213,7 +219,7 @@
           <Color blue="f5" green="a5" red="42" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 18)" type="code"/>
+          <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 14)" type="code"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -227,13 +233,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMarcarFinalizadaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnGenerarListaDeAsistencias1">
+    <Component class="javax.swing.JButton" name="btnEliminar">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f5" green="a5" red="42" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 18)" type="code"/>
+          <Connection code="new Font(&quot;Inter&quot;, Font.PLAIN, 14)" type="code"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -244,7 +250,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarListaDeAsistencias1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -1,5 +1,7 @@
 package itson.fabrica;
 
+import itson.implementaciones.ActividadesBO;
+import itson.implementaciones.ActividadesDAO;
 import itson.implementaciones.EventosBO;
 import itson.implementaciones.EventosDAO;
 import itson.implementaciones.LugaresBO;
@@ -8,6 +10,8 @@ import itson.implementaciones.ParticipantesBO;
 import itson.implementaciones.ParticipantesDAO;
 import itson.implementaciones.ResponsablesBO;
 import itson.implementaciones.ResponsablesDAO;
+import itson.interfaces.IActividadesBO;
+import itson.interfaces.IActividadesDAO;
 import itson.interfaces.IEventosBO;
 import itson.interfaces.IEventosDAO;
 import itson.interfaces.ILugaresBO;
@@ -38,4 +42,10 @@ public class ObjetosNegocioFactory {
         IEventosDAO eventosDAO = new EventosDAO();
         return new EventosBO(eventosDAO);
     }
+
+    public static IActividadesBO crearActividadesBO() {
+        IActividadesDAO actividadesDAO = new ActividadesDAO();
+        return new ActividadesBO(actividadesDAO);
+    }
+
 }

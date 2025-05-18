@@ -15,7 +15,7 @@ public class ActividadDTO {
     private EstadoActividad estado;
     private Integer lugarId;
     private Integer responsableId;
-    private List<String> participantesIds;
+    private List<Integer> participantesIds;
     private Integer idEvento;
 
     /**
@@ -34,7 +34,7 @@ public class ActividadDTO {
      */
     public ActividadDTO(Integer id, String nombre, String tipoActividad, Calendar fechaInicio,
             Integer duracionEstimada, Integer capacidadMaxima, EstadoActividad estado, Integer lugarId, Integer responsableId,
-            List<String> participantesIds, Integer eventoId) {
+            List<Integer> participantesIds, Integer eventoId) {
         this.id = id;
         this.nombre = nombre;
         this.tipoActividad = tipoActividad;
@@ -66,6 +66,7 @@ public class ActividadDTO {
         this.fechaInicio = fechaInicio;
         this.duracionEstimada = duracionEstimada;
         this.capacidadMaxima = capacidadMaxima;
+        this.estado = estado;
         this.lugarId = lugarId;
         this.responsableId = responsableId;
     }
@@ -93,17 +94,21 @@ public class ActividadDTO {
     public EstadoActividad getEstado() {
         return estado;
     }
-    
+
     public Integer getLugarId() {
         return lugarId;
     }
 
-    public List<String> getParticipantesIds() {
+    public List<Integer> getParticipantesIds() {
         return participantesIds;
     }
 
     public Integer getIdEvento() {
         return idEvento;
+    }
+
+    public void setIdEvento(Integer idEvento) {
+        this.idEvento = idEvento;
     }
 
     public Integer getResponsableId() {
