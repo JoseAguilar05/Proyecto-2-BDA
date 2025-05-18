@@ -28,7 +28,6 @@ public class EventoDTO {
      * @param modalidad     La modalidad del evento (PRESENCIAL, VIRTUAL).
      * @param idsActividades Lista de identificadores de actividades asociadas al evento.
      * @param responsableId El identificador del responsable del evento.
-     * @param lugarId       El identificador del lugar donde se llevará a cabo el evento.
      */
     public EventoDTO(Integer id, String titulo, String descripcion, Calendar fechaInicio, Calendar fechaFin,
             EstadoEvento estado, ModalidadEvento modalidad, List<Integer> actividadesIds, Integer responsableId) {

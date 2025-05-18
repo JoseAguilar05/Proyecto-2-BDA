@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -57,8 +59,16 @@ public class Actividad {
     /**
      * Ubicación donde se llevará a cabo la actividad.
      */
-    @Column(name = "lugar")
-    private String lugar;
+    @OneToMany
+    @JoinColumn(name = "id_lugar")
+    private Lugar lugar;
+
+    /**
+     * Responsable de la actividad.
+     */
+    @OneToMany()
+    @JoinColumn(name = "id_responsable")
+    private Responsable responsable;
 
     /**
      * Lista de participantes asociados a la actividad.
@@ -87,7 +97,7 @@ public class Actividad {
      * @param duracionEstimada Duración estimada de la actividad en minutos.
      * @param lugar Ubicación donde se llevará a cabo la actividad.
      */
-    public Actividad(Integer id, String nombre, String descripcion, Calendar fechaInicio, Integer duracionEstimada, String lugar) {
+    public Actividad(Integer id, String nombre, String descripcion, Calendar fechaInicio, Integer duracionEstimada, Lugar lugar) {
         this.id = id;
         this.nombre = nombre;
         this.tipoActividad = descripcion;
@@ -173,17 +183,17 @@ public class Actividad {
      * 
      * @return La duración estimada de la actividad.
      */
-    public Integer getFechaFin() {
+    public Integer getDuracionEstimada() {
         return duracionEstimada;
     }
 
     /**
      * Establece la duración estimada de la actividad en minutos.
      * 
-     * @param fechaFin La duración estimada de la actividad.
+     * @param duracionEstimada La duración estimada de la actividad.
      */
-    public void setFechaFin(Integer fechaFin) {
-        this.duracionEstimada = fechaFin;
+    public void setDuracionEstimada(Integer duracionEstimada) {
+        this.duracionEstimada = duracionEstimada;
     }
 
     /**
@@ -191,7 +201,7 @@ public class Actividad {
      * 
      * @return La ubicación de la actividad.
      */
-    public String getLugar() {
+    public Lugar getLugar() {
         return lugar;
     }
 
@@ -200,7 +210,7 @@ public class Actividad {
      * 
      * @param lugar La ubicación de la actividad.
      */
-    public void setLugar(String lugar) {
+    public void setLugar(Lugar lugar) {
         this.lugar = lugar;
     }
 
@@ -238,5 +248,22 @@ public class Actividad {
      */
     public void setEvento(Evento evento) {
         this.evento = evento;
+    }
+    
+    /**
+     * Obtiene el responsable de la actividad.
+     * 
+     * @return El responsable de la actividad.
+     */
+    public Responsable getResponsable() {
+        return responsable;
+    }
+
+    /**
+     * Establece el responsable de la actividad.
+     * @param responsable El responsable de la actividad.
+     */
+    public void setResponsable(Responsable responsable) {
+        this.responsable = responsable;
     }
 }
