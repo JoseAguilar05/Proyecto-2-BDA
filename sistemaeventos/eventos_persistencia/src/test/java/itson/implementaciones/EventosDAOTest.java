@@ -11,6 +11,7 @@ import itson.entidades.Lugar;
 import itson.entidades.Responsable;
 import itson.enums.ModalidadEvento;
 import itson.enums.TipoResponsable;
+import itson.enums.EstadoActividad;
 import itson.enums.EstadoEvento; // Asumiendo que existe este enum
 import itson.interfaces.IEventosDAO;
 import itson.interfaces.ILugaresDAO;
@@ -195,10 +196,12 @@ public class EventosDAOTest {
 
         List<ActividadDTO> actividades = new ArrayList<>();
         actividades.add(new ActividadDTO("Charla Inaugural", "Conferencia",
-                toCalendar(LocalDateTime.now().plusDays(10).plusHours(2)), 60, 30, lugarActividad.getId(),
+                toCalendar(LocalDateTime.now().plusDays(10).plusHours(2)), 60, 30, EstadoActividad.PLANEADA,
+                lugarActividad.getId(),
                 respActividad.getId()));
         actividades.add(new ActividadDTO("Taller de Machine Learning", "Taller",
-                toCalendar(LocalDateTime.now().plusDays(11).plusHours(4)), 120, 30, lugarActividad.getId(),
+                toCalendar(LocalDateTime.now().plusDays(11).plusHours(4)), 120, 30, EstadoActividad.PLANEADA,
+                lugarActividad.getId(),
                 respActividad.getId()));
 
         eventoGuardado = eventosDAO.guardarEventoConActividades(eventoDTO, actividades);
@@ -237,7 +240,7 @@ public class EventosDAOTest {
                 toCalendar(LocalDateTime.now().plusDays(1)),
                 EstadoEvento.PLANEADO, ModalidadEvento.PRESENCIAL, null, orgEvento.getId());
         List<ActividadDTO> actividades = new ArrayList<>();
-        actividades.add(new ActividadDTO("Actividad Lugar Fail", "Conferencia", toCalendar(LocalDateTime.now()), 60, 30,
+        actividades.add(new ActividadDTO("Actividad Lugar Fail", "Conferencia", toCalendar(LocalDateTime.now()), 60, 30, EstadoActividad.PLANEADA,
                 -998, respActividad.getId())); // ID de lugar inválido
 
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -481,8 +484,7 @@ public class EventosDAOTest {
                 toCalendar(LocalDateTime.now().plusDays(14)),
                 null,
                 null,
-                EstadoEvento.PLANEADO
-        );
+                EstadoEvento.PLANEADO);
         List<EventoDTO> resultados = eventosDAO.buscarEventosPorFiltro(filtro);
         assertNotNull(resultados);
         assertEquals(1, resultados.size(), "Debería encontrarse 1 evento PLANEADO desde Hoy+14.");
@@ -498,8 +500,7 @@ public class EventosDAOTest {
                 null,
                 null,
                 null,
-                null
-                );
+                null);
 
         List<EventoDTO> resultados = eventosDAO.buscarEventosPorFiltro(filtro);
         assertNotNull(resultados);
@@ -511,15 +512,14 @@ public class EventosDAOTest {
         System.out.println("buscarEventosPorFiltro_FiltroDTOVacio");
         prepararEventosParaFiltro(); // Debería devolver todos los eventos (4 en este caso)
         BusquedaEventoDTO filtro = new BusquedaEventoDTO(
-            null,null,null,null,null
-        ); // Sin setear ningún campo
+                null, null, null, null, null); // Sin setear ningún campo
 
         List<EventoDTO> resultados = eventosDAO.buscarEventosPorFiltro(filtro);
         assertNotNull(resultados);
         assertEquals(4, resultados.size(), "Deberían devolverse todos los eventos si el filtro está vacío.");
     }
 
-        @Test
+    @Test
     public void testModificarEstadoEvento_Exitoso() {
         System.out.println("modificarEstadoEvento_Exitoso");
         // 1. Crear y guardar un evento de prueba
@@ -527,12 +527,14 @@ public class EventosDAOTest {
         EventoDTO eventoParaGuardar = new EventoDTO(null, "Evento para Modificar Estado", "Desc Modificar",
                 toCalendar(LocalDateTime.now().plusDays(1)), toCalendar(LocalDateTime.now().plusDays(2)),
                 EstadoEvento.PLANEADO, ModalidadEvento.PRESENCIAL, null, orgEvento.getId());
-        
-        // Guardar el evento y asignarlo a eventoGuardado para limpieza automática en tearDown
+
+        // Guardar el evento y asignarlo a eventoGuardado para limpieza automática en
+        // tearDown
         eventoGuardado = eventosDAO.guardarEventoConActividades(eventoParaGuardar, new ArrayList<>());
         assertNotNull(eventoGuardado, "El evento base para modificar estado no se pudo guardar.");
         assertNotNull(eventoGuardado.getId(), "El ID del evento guardado es nulo.");
-        assertEquals(EstadoEvento.PLANEADO, eventoGuardado.getEstado(), "El estado inicial del evento no es el esperado.");
+        assertEquals(EstadoEvento.PLANEADO, eventoGuardado.getEstado(),
+                "El estado inicial del evento no es el esperado.");
 
         // 2. Modificar el estado del evento
         EstadoEvento nuevoEstado = EstadoEvento.EN_CURSO;
@@ -540,15 +542,17 @@ public class EventosDAOTest {
         assertTrue(resultadoModificacion, "La modificación del estado del evento debería ser exitosa.");
 
         // 3. Verificar que el estado se haya actualizado en la base de datos
-        // Es importante obtener una nueva instancia del EntityManager para asegurar que no estamos leyendo de la caché de primer nivel.
+        // Es importante obtener una nueva instancia del EntityManager para asegurar que
+        // no estamos leyendo de la caché de primer nivel.
         EntityManager emVerificacion = ManejadorConexiones.obtenerConexion();
         Evento eventoVerificado = emVerificacion.find(Evento.class, eventoGuardado.getId());
         emVerificacion.close(); // Cerrar el EntityManager de verificación
 
         assertNotNull(eventoVerificado, "No se pudo encontrar el evento después de intentar modificar su estado.");
-        assertEquals(nuevoEstado, eventoVerificado.getEstado(), "El estado del evento no se actualizó correctamente en la BD.");
+        assertEquals(nuevoEstado, eventoVerificado.getEstado(),
+                "El estado del evento no se actualizó correctamente en la BD.");
     }
-    
+
     @Test
     public void testModificarEvento_Exitoso_CambioSimple() {
         System.out.println("modificarEvento_Exitoso_CambioSimple");
@@ -557,7 +561,7 @@ public class EventosDAOTest {
         EventoDTO eventoOriginalDTO = new EventoDTO(null, "Evento Original", "Descripción Original",
                 toCalendar(LocalDateTime.now().plusDays(10)), toCalendar(LocalDateTime.now().plusDays(11)),
                 EstadoEvento.PLANEADO, ModalidadEvento.PRESENCIAL, null, orgOriginal.getId());
-        
+
         eventoGuardado = eventosDAO.guardarEventoConActividades(eventoOriginalDTO, new ArrayList<>());
         assertNotNull(eventoGuardado, "El evento original no se pudo guardar.");
         assertNotNull(eventoGuardado.getId(), "El ID del evento original es nulo.");
@@ -565,7 +569,7 @@ public class EventosDAOTest {
         // 2. Preparar el DTO con las modificaciones
         EventoDTO eventoModificadoDTO = new EventoDTO(
                 eventoGuardado.getId(), // ID del evento a modificar
-                "Evento Modificado",    // Nuevo título
+                "Evento Modificado", // Nuevo título
                 "Descripción Modificada", // Nueva descripción
                 toCalendar(LocalDateTime.now().plusDays(12)), // Nueva fecha de inicio
                 toCalendar(LocalDateTime.now().plusDays(13)), // Nueva fecha de fin
@@ -588,9 +592,12 @@ public class EventosDAOTest {
         assertNotNull(eventoVerificado, "No se pudo encontrar el evento después de la modificación.");
         assertEquals("Evento Modificado", eventoVerificado.getTitulo());
         assertEquals("Descripción Modificada", eventoVerificado.getDescripcion());
-        // Para comparar Calendar, es mejor convertir a un formato comparable o comparar campos individuales
-        assertEquals(eventoModificadoDTO.getFechaInicio().getTimeInMillis() / 1000, eventoVerificado.getFechaInicio().getTimeInMillis() / 1000);
-        assertEquals(eventoModificadoDTO.getFechaFin().getTimeInMillis() / 1000, eventoVerificado.getFechaFin().getTimeInMillis() / 1000);
+        // Para comparar Calendar, es mejor convertir a un formato comparable o comparar
+        // campos individuales
+        assertEquals(eventoModificadoDTO.getFechaInicio().getTimeInMillis() / 1000,
+                eventoVerificado.getFechaInicio().getTimeInMillis() / 1000);
+        assertEquals(eventoModificadoDTO.getFechaFin().getTimeInMillis() / 1000,
+                eventoVerificado.getFechaFin().getTimeInMillis() / 1000);
         assertEquals(EstadoEvento.PLANEADO, eventoVerificado.getEstado());
         assertEquals(ModalidadEvento.EN_LINEA, eventoVerificado.getModalidad());
         // Verificar que el responsable no cambió (ya que el método no lo modifica)
@@ -604,8 +611,7 @@ public class EventosDAOTest {
                 -998, // ID Inexistente
                 "Título Inexistente", "Desc Inexistente",
                 toCalendar(LocalDateTime.now()), toCalendar(LocalDateTime.now().plusDays(1)),
-                EstadoEvento.PLANEADO, ModalidadEvento.PRESENCIAL, null, 1
-        );
+                EstadoEvento.PLANEADO, ModalidadEvento.PRESENCIAL, null, 1);
 
         Evento eventoResultado = eventosDAO.modificarEvento(dtoInexistente);
         assertNull(eventoResultado, "Modificar un evento inexistente debería devolver null.");

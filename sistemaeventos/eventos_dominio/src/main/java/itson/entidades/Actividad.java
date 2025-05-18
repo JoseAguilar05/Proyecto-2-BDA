@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import itson.enums.EstadoActividad;
 
 /**
  * Representa una actividad dentro de un evento.
@@ -54,6 +58,13 @@ public class Actividad {
      */
     @Column(name = "duracion_estimada")
     private Integer duracionEstimada;
+
+    /**
+     * Estado de la actividad.
+     */
+    @Column(name = "estado")
+    @Enumerated(EnumType.STRING)
+    private EstadoActividad estado;
 
     /**
      * Capacidad máxima de participantes en la actividad.
@@ -200,6 +211,24 @@ public class Actividad {
      */
     public void setDuracionEstimada(Integer duracionEstimada) {
         this.duracionEstimada = duracionEstimada;
+    }
+
+    /**
+     * Obtiene el estado de la actividad.
+     * 
+     * @return El estado de la actividad.
+     */
+    public EstadoActividad getEstado() {
+        return estado;
+    }
+
+    /**
+     * Establece el estado de la actividad.
+     * 
+     * @param estado El estado de la actividad.
+     */
+    public void setEstado(EstadoActividad estado) {
+        this.estado = estado;
     }
 
     /**

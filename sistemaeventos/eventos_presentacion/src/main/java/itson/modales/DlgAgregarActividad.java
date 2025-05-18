@@ -4,6 +4,8 @@ import itson.control.Formateador;
 import itson.dtos.ActividadDTO;
 import itson.dtos.LugarDTO;
 import itson.dtos.ResponsableDTO;
+import itson.enums.EstadoActividad;
+
 import java.awt.Font;
 import java.time.LocalDateTime;
 import java.util.Calendar;
@@ -323,6 +325,7 @@ public class DlgAgregarActividad extends javax.swing.JDialog {
                     toCalendar(fechaHora.getDateTimePermissive()),
                     (Integer) jSpinnerDuracion.getValue(),
                     (Integer) jSpinnerCapacidad.getValue(),
+                    EstadoActividad.PLANEADA,
                     responsableSeleccionado.getId(),
                     lugarSeleccionado.getId()
             );
