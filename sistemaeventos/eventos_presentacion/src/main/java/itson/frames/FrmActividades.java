@@ -253,6 +253,14 @@ public class FrmActividades extends javax.swing.JFrame {
             try {
                 IActividadesBO actividadesBO = ObjetosNegocioFactory.crearActividadesBO();
                 actividad.setIdEvento(evento.getId());
+                for(Integer idActividad : evento.getIdsActividades()) {
+                    ActividadDTO actividadExistente = actividadesBO.buscarActividadPorId(idActividad);
+                    if (actividadExistente != null && actividadExistente.getNombre().equals(actividad.getNombre())) {
+                        JOptionPane.showMessageDialog(this, "Ya existe una actividad con ese nombre", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                }
                 actividadesBO.crearActividad(actividad);
                 JOptionPane.showMessageDialog(this, "Actividad agregada exitosamente", "Éxito",
                         JOptionPane.INFORMATION_MESSAGE);

@@ -405,6 +405,13 @@ public class FrmRegistrarEvento extends javax.swing.JFrame {
         DlgAgregarActividad dlgAgregarActividad = new DlgAgregarActividad(this, true, txtTitulo.getText());
         ActividadDTO actividad = dlgAgregarActividad.agregarActividadDTO();
         if (actividad != null) {
+                for(ActividadDTO act : actividades) {
+                    if (act.getNombre().equals(actividad.getNombre())) {
+                        JOptionPane.showMessageDialog(this, "Ya existe una actividad con ese nombre en el evento", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                }
             JOptionPane.showMessageDialog(this, "Actividad agregada exitosamente", "Éxito",
                     JOptionPane.INFORMATION_MESSAGE);
             this.actividades.add(actividad);
