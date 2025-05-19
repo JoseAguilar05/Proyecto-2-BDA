@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="itson.implementaciones.ActividadesDAOTest" time="2.524" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="itson.implementaciones.ActividadesDAOTest" time="1.465" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="MX"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\pc\AppData\Local\Temp\surefire9605301170061899800\surefirebooter-20250518190704359_3.jar C:\Users\pc\AppData\Local\Temp\surefire9605301170061899800 2025-05-18T19-07-02_301-jvmRun1 surefire-20250518190704359_1tmp surefire_0-20250518190704359_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\pc\AppData\Local\Temp\surefire14244099129603128285\surefirebooter-20250518203644105_3.jar C:\Users\pc\AppData\Local\Temp\surefire14244099129603128285 2025-05-18T20-36-42_730-jvmRun1 surefire-20250518203644105_1tmp surefire_0-20250518203644105_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\target\test-classes;C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\target\classes;C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_dominio\target\eventos_dominio-1.0-SNAPSHOT.jar;C:\Users\pc\.m2\repository\com\mysql\mysql-connector-j\9.3.0\mysql-connector-j-9.3.0.jar;C:\Users\pc\.m2\repository\com\google\protobuf\protobuf-java\4.29.0\protobuf-java-4.29.0.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.core\2.7.12\org.eclipse.persistence.core-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.asm\9.4.0\org.eclipse.persistence.asm-9.4.0.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.antlr\2.7.12\org.eclipse.persistence.antlr-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa\2.7.12\org.eclipse.persistence.jpa-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa.jpql\2.7.12\org.eclipse.persistence.jpa.jpql-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.moxy\2.7.12\org.eclipse.persistence.moxy-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\jakarta.persistence\2.2.3\jakarta.persistence-2.2.3.jar;C:\Users\pc\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\pc\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\pc\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\pc\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\pc\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.3\junit-jupiter-params-5.10.3.jar;C:\Users\pc\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\pc\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\pc\AppData\Local\Temp\surefire9605301170061899800\surefirebooter-20250518190704359_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\pc\AppData\Local\Temp\surefire14244099129603128285\surefirebooter-20250518203644105_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.6+8-LTS-188"/>
@@ -59,40 +59,40 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testBuscarActividadPorId_Exitoso" classname="itson.implementaciones.ActividadesDAOTest" time="1.543">
+  <testcase name="testBuscarActividadPorId_Exitoso" classname="itson.implementaciones.ActividadesDAOTest" time="0.982">
     <system-out><![CDATA[buscarActividadPorId_Exitoso
-[EL Info]: 2025-05-18 19:07:05.409--ServerSession(1988644427)--EclipseLink, version: Eclipse Persistence Services - 2.7.12.v20230209-e5c4074ef3
+[EL Info]: 2025-05-18 20:36:44.902--ServerSession(1307950260)--EclipseLink, version: Eclipse Persistence Services - 2.7.12.v20230209-e5c4074ef3
 ]]></system-out>
   </testcase>
-  <testcase name="testEliminarActividad_Exitoso" classname="itson.implementaciones.ActividadesDAOTest" time="0.155">
+  <testcase name="testEliminarActividad_Exitoso" classname="itson.implementaciones.ActividadesDAOTest" time="0.089">
     <system-out><![CDATA[eliminarActividad_Exitoso
 ]]></system-out>
   </testcase>
-  <testcase name="testModificarEstadoActividadDTO_NoEncontrada" classname="itson.implementaciones.ActividadesDAOTest" time="0.007">
+  <testcase name="testModificarEstadoActividadDTO_NoEncontrada" classname="itson.implementaciones.ActividadesDAOTest" time="0.004">
     <system-out><![CDATA[modificarEstadoActividadDTO_NoEncontrada
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerParticipantesPorActividad_ActividadNoEncontrada" classname="itson.implementaciones.ActividadesDAOTest" time="0.006">
+  <testcase name="testObtenerParticipantesPorActividad_ActividadNoEncontrada" classname="itson.implementaciones.ActividadesDAOTest" time="0.005">
     <system-out><![CDATA[obtenerParticipantesPorActividad_ActividadNoEncontrada
 ]]></system-out>
   </testcase>
-  <testcase name="testGuardarActividad_ResponsableNoEncontrado" classname="itson.implementaciones.ActividadesDAOTest" time="0.233">
+  <testcase name="testGuardarActividad_ResponsableNoEncontrado" classname="itson.implementaciones.ActividadesDAOTest" time="0.066">
     <system-out><![CDATA[guardarActividad_ResponsableNoEncontrado
 ]]></system-out>
   </testcase>
-  <testcase name="testModificarEstadoActividadDTO_Exitoso" classname="itson.implementaciones.ActividadesDAOTest" time="0.196">
+  <testcase name="testModificarEstadoActividadDTO_Exitoso" classname="itson.implementaciones.ActividadesDAOTest" time="0.104">
     <system-out><![CDATA[modificarEstadoActividadDTO_Exitoso
 ]]></system-out>
   </testcase>
-  <testcase name="testEliminarActividad_NoEncontrada" classname="itson.implementaciones.ActividadesDAOTest" time="0.004">
+  <testcase name="testEliminarActividad_NoEncontrada" classname="itson.implementaciones.ActividadesDAOTest" time="0.003">
     <system-out><![CDATA[eliminarActividad_NoEncontrada
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerParticipantesPorActividad_SinParticipantes" classname="itson.implementaciones.ActividadesDAOTest" time="0.229">
+  <testcase name="testObtenerParticipantesPorActividad_SinParticipantes" classname="itson.implementaciones.ActividadesDAOTest" time="0.089">
     <system-out><![CDATA[obtenerParticipantesPorActividad_SinParticipantes
 ]]></system-out>
   </testcase>
-  <testcase name="testGuardarActividad_Exitoso" classname="itson.implementaciones.ActividadesDAOTest" time="0.104">
+  <testcase name="testGuardarActividad_Exitoso" classname="itson.implementaciones.ActividadesDAOTest" time="0.089">
     <system-out><![CDATA[guardarActividad_Exitoso
 ]]></system-out>
   </testcase>

@@ -1,23 +1,23 @@
 package itson.reportes.generadores;
 
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
-import net.sf.jasperreports.view.JasperViewer;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
-import itson.conexion.ManejadorConexiones; 
+import itson.conexion.ManejadorConexiones;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
-public class GeneradorListaAsistencia {
+public class GeneradorHistorialActividades {
 
-    public void generarReporte(Integer idActividad) {
+    public void generarHistorialActividades(Integer idParticipante) {
         Connection conexion = null; 
         try{
-            String jasperFilePath = "reportes/lista_asistencia.jasper"; 
+            String jasperFilePath = "reportes/historial_participante.jasper"; 
             java.io.InputStream jasperStream = getClass().getClassLoader().getResourceAsStream(jasperFilePath);
             if (jasperStream == null) {
                 System.err.println("No se pudo encontrar el archivo Jasper: " + jasperFilePath + 
@@ -28,7 +28,7 @@ public class GeneradorListaAsistencia {
             JasperReport reporte = (JasperReport) JRLoader.loadObject(jasperStream);
 
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("idActividad", idActividad);
+            parameters.put("idParticipante", idParticipante);
 
             javax.persistence.EntityManager em = ManejadorConexiones.obtenerConexion(); 
             em.getTransaction().begin(); 
@@ -49,5 +49,6 @@ public class GeneradorListaAsistencia {
         } catch (Exception e) { 
             e.printStackTrace();
         } 
-    }    
+    }
+
 }

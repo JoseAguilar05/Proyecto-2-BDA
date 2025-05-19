@@ -3,6 +3,7 @@ package itson.paneles;
 import java.awt.Font;
 
 import itson.dtos.ParticipanteDTO;
+import itson.reportes.generadores.GeneradorHistorialActividades;
 
 public class PnlParticipante extends javax.swing.JPanel {
 
@@ -68,6 +69,11 @@ public class PnlParticipante extends javax.swing.JPanel {
 
         btnVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btnVer.png"))); // NOI18N
         btnVer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVerMouseClicked(evt);
+            }
+        });
 
         checkBoxSeleccionado.setFont(new Font("Inter", Font.PLAIN, 14));
         checkBoxSeleccionado.setForeground(new java.awt.Color(0, 0, 0));
@@ -132,6 +138,11 @@ public class PnlParticipante extends javax.swing.JPanel {
             checkBoxSeleccionado.setText("Seleccionar");
         }
     }//GEN-LAST:event_checkBoxSeleccionadoActionPerformed
+
+    private void btnVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseClicked
+        GeneradorHistorialActividades generador = new GeneradorHistorialActividades();
+        generador.generarHistorialActividades(participanteDTO.getId());
+    }//GEN-LAST:event_btnVerMouseClicked
 
     public boolean isSeleccionado() {
         return checkBoxSeleccionado.isSelected();

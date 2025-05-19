@@ -324,7 +324,7 @@ public class PnlActividad extends javax.swing.JPanel {
             return;
         } 
         GeneradorListaAsistencia generador = new GeneradorListaAsistencia();
-        generador.GenerarReporte(actividad.getId());
+        generador.generarReporte(actividad.getId());
     }// GEN-LAST:event_btnGenerarListaDeAsistenciasActionPerformed
 
     private void btnMarcarFinalizadaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMarcarFinalizadaActionPerformed

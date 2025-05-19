@@ -42,6 +42,7 @@ itson\frames\FrmEventos$4.class
 itson\modales\DlgSeleccionarLugar$4.class
 itson\frames\FrmInfoEvento$2.class
 itson\modales\DlgAgregarActividad$2.class
+itson\paneles\PnlParticipante$2.class
 itson\modales\DlgAgregarActividad$3.class
 itson\frames\FrmRegistrarParticipante$2.class
 itson\reportes\generadores\GeneradorListaAsistencia.class
@@ -54,6 +55,7 @@ itson\frames\FrmParticipantes$5.class
 itson\frames\FrmMenuPrincipal$2.class
 itson\frames\FrmRegistrarEvento.class
 itson\paneles\PnlEvento.class
+itson\reportes\generadores\GeneradorHistorialActividades.class
 itson\modales\DlgAgregarActividad$1.class
 itson\frames\FrmRegistrarEvento$1.class
 itson\frames\FrmInfoEvento.class

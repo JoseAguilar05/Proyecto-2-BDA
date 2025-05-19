@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: itson.implementaciones.ActividadesDAOTest
 -------------------------------------------------------------------------------
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.524 s -- in itson.implementaciones.ActividadesDAOTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.465 s -- in itson.implementaciones.ActividadesDAOTest
