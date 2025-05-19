@@ -14,7 +14,7 @@ import itson.enums.TipoParticipante;
 import itson.excepciones.NegocioException;
 import itson.fabrica.ObjetosNegocioFactory;
 import itson.interfaces.IParticipantesBO;
-import paneles.PnlParticipante;
+import itson.paneles.PnlParticipante;
 
 public class FrmParticipantes extends javax.swing.JFrame {
 

@@ -16,7 +16,7 @@ import itson.enums.EstadoEvento;
 import itson.enums.ModalidadEvento;
 import itson.fabrica.ObjetosNegocioFactory;
 import itson.interfaces.IEventosBO;
-import paneles.PnlEvento;
+import itson.paneles.PnlEvento;
 
 public class FrmEventos extends javax.swing.JFrame {
 

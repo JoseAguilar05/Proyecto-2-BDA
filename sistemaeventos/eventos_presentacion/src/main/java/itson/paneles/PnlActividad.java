@@ -1,4 +1,4 @@
-package paneles;
+package itson.paneles;
 
 import java.awt.Cursor;
 import java.awt.Font;
@@ -23,6 +23,7 @@ import itson.interfaces.IActividadesBO;
 import itson.interfaces.IEventosBO;
 import itson.interfaces.IParticipantesBO;
 import itson.interfaces.IResponsablesBO;
+import itson.reportes.generadores.GeneradorListaAsistencia;
 
 public class PnlActividad extends javax.swing.JPanel {
 
@@ -317,7 +318,13 @@ public class PnlActividad extends javax.swing.JPanel {
     }// GEN-LAST:event_formMouseClicked
 
     private void btnGenerarListaDeAsistenciasActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGenerarListaDeAsistenciasActionPerformed
-        // TODO: Implementar la lógica para generar la lista de asistencias
+        if(actividad.getParticipantesIds().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay participantes inscritos en la actividad.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+        GeneradorListaAsistencia generador = new GeneradorListaAsistencia();
+        generador.GenerarReporte(actividad.getId());
     }// GEN-LAST:event_btnGenerarListaDeAsistenciasActionPerformed
 
     private void btnMarcarFinalizadaActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMarcarFinalizadaActionPerformed

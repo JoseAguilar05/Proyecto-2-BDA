@@ -1,4 +1,4 @@
-package paneles;
+package itson.paneles;
 
 import java.awt.Font;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="itson.implementaciones.EventosDAOTest" time="2.929" tests="18" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="itson.implementaciones.EventosDAOTest" time="2.723" tests="21" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="MX"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\pc\AppData\Local\Temp\surefire8863683477649764623\surefirebooter-20250518080107512_3.jar C:\Users\pc\AppData\Local\Temp\surefire8863683477649764623 2025-05-18T08-01-05_366-jvmRun1 surefire-20250518080107512_1tmp surefire_0-20250518080107512_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\pc\AppData\Local\Temp\surefire9605301170061899800\surefirebooter-20250518190704359_3.jar C:\Users\pc\AppData\Local\Temp\surefire9605301170061899800 2025-05-18T19-07-02_301-jvmRun1 surefire-20250518190704359_1tmp surefire_0-20250518190704359_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\target\test-classes;C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_persistencia\target\classes;C:\Users\pc\Documents\GitHub\Sistema-Restaurante\Proyecto-2-BDA\sistemaeventos\eventos_dominio\target\eventos_dominio-1.0-SNAPSHOT.jar;C:\Users\pc\.m2\repository\com\mysql\mysql-connector-j\9.3.0\mysql-connector-j-9.3.0.jar;C:\Users\pc\.m2\repository\com\google\protobuf\protobuf-java\4.29.0\protobuf-java-4.29.0.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.core\2.7.12\org.eclipse.persistence.core-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.asm\9.4.0\org.eclipse.persistence.asm-9.4.0.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.antlr\2.7.12\org.eclipse.persistence.antlr-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa\2.7.12\org.eclipse.persistence.jpa-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.jpa.jpql\2.7.12\org.eclipse.persistence.jpa.jpql-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\org.eclipse.persistence.moxy\2.7.12\org.eclipse.persistence.moxy-2.7.12.jar;C:\Users\pc\.m2\repository\org\eclipse\persistence\jakarta.persistence\2.2.3\jakarta.persistence-2.2.3.jar;C:\Users\pc\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\pc\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\pc\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\pc\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\pc\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.3\junit-jupiter-params-5.10.3.jar;C:\Users\pc\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\pc\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\pc\AppData\Local\Temp\surefire8863683477649764623\surefirebooter-20250518080107512_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\pc\AppData\Local\Temp\surefire9605301170061899800\surefirebooter-20250518190704359_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.6+8-LTS-188"/>
@@ -59,33 +59,39 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testBuscarEventosPorFiltro_PorFechaInicio" classname="itson.implementaciones.EventosDAOTest" time="1.292">
+  <testcase name="testBuscarEventosPorFiltro_PorFechaInicio" classname="itson.implementaciones.EventosDAOTest" time="0.294">
     <system-out><![CDATA[buscarEventosPorFiltro_PorFechaInicio
-[EL Info]: 2025-05-18 08:01:08.54--ServerSession(948115224)--EclipseLink, version: Eclipse Persistence Services - 2.7.12.v20230209-e5c4074ef3
 ]]></system-out>
   </testcase>
-  <testcase name="testGuardarEvento_LugarActividadNoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.061">
+  <testcase name="testGuardarEvento_LugarActividadNoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.101">
     <system-out><![CDATA[guardarEvento_LugarActividadNoEncontrado
 ]]></system-out>
   </testcase>
-  <testcase name="testGuardarEvento_ResponsableEventoNoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.008">
+  <testcase name="testGuardarEvento_ResponsableEventoNoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.006">
     <system-out><![CDATA[guardarEvento_ResponsableEventoNoEncontrado
 ]]></system-out>
   </testcase>
-  <testcase name="testEliminarEvento_NoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.005">
+  <testcase name="testEliminarEvento_NoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.003">
     <system-out><![CDATA[eliminarEvento_NoEncontrado
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarEventoPorId_Exitoso" classname="itson.implementaciones.EventosDAOTest" time="0.054">
+  <testcase name="testBuscarEventoPorId_Exitoso" classname="itson.implementaciones.EventosDAOTest" time="0.045">
     <system-out><![CDATA[buscarEventoPorId_Exitoso
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarEventosPorFiltro_FiltroDTOVacio" classname="itson.implementaciones.EventosDAOTest" time="0.232">
-    <system-out><![CDATA[buscarEventosPorFiltro_FiltroDTOVacio
-[EL Info]: 2025-05-18 08:01:09.678--ServerSession(1878677242)--EclipseLink, version: Eclipse Persistence Services - 2.7.12.v20230209-e5c4074ef3
+  <testcase name="testModificarEstadoEvento_Exitoso" classname="itson.implementaciones.EventosDAOTest" time="0.139">
+    <system-out><![CDATA[modificarEstadoEvento_Exitoso
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarEventosPorFiltro_PorModalidad" classname="itson.implementaciones.EventosDAOTest" time="0.144">
+  <testcase name="testModificarEvento_Exitoso_CambioSimple" classname="itson.implementaciones.EventosDAOTest" time="0.053">
+    <system-out><![CDATA[modificarEvento_Exitoso_CambioSimple
+]]></system-out>
+  </testcase>
+  <testcase name="testBuscarEventosPorFiltro_FiltroDTOVacio" classname="itson.implementaciones.EventosDAOTest" time="0.293">
+    <system-out><![CDATA[buscarEventosPorFiltro_FiltroDTOVacio
+]]></system-out>
+  </testcase>
+  <testcase name="testBuscarEventosPorFiltro_PorModalidad" classname="itson.implementaciones.EventosDAOTest" time="0.287">
     <system-out><![CDATA[buscarEventosPorFiltro_PorModalidad
 ]]></system-out>
   </testcase>
@@ -93,44 +99,47 @@
     <system-out><![CDATA[obtenerEventos_Vacio
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarEventosPorFiltro_SinResultados" classname="itson.implementaciones.EventosDAOTest" time="0.149">
+  <testcase name="testBuscarEventosPorFiltro_SinResultados" classname="itson.implementaciones.EventosDAOTest" time="0.277">
     <system-out><![CDATA[buscarEventosPorFiltro_SinResultados
 ]]></system-out>
   </testcase>
-  <testcase name="testObtenerEventos" classname="itson.implementaciones.EventosDAOTest" time="0.088">
+  <testcase name="testObtenerEventos" classname="itson.implementaciones.EventosDAOTest" time="0.172">
     <system-out><![CDATA[obtenerEventos
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarEventosPorFiltro_PorEstado" classname="itson.implementaciones.EventosDAOTest" time="0.193">
+  <testcase name="testBuscarEventosPorFiltro_PorEstado" classname="itson.implementaciones.EventosDAOTest" time="0.235">
     <system-out><![CDATA[buscarEventosPorFiltro_PorEstado
-[EL Info]: 2025-05-18 08:01:10.327--ServerSession(278536229)--EclipseLink, version: Eclipse Persistence Services - 2.7.12.v20230209-e5c4074ef3
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarEventosPorFiltro_Combinado_EstadoYFechaInicio" classname="itson.implementaciones.EventosDAOTest" time="0.126">
+  <testcase name="testBuscarEventosPorFiltro_Combinado_EstadoYFechaInicio" classname="itson.implementaciones.EventosDAOTest" time="0.159">
     <system-out><![CDATA[buscarEventosPorFiltro_Combinado_EstadoYFechaInicio
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarEventosPorFiltro_PorTitulo" classname="itson.implementaciones.EventosDAOTest" time="0.116">
+  <testcase name="testBuscarEventosPorFiltro_PorTitulo" classname="itson.implementaciones.EventosDAOTest" time="0.165">
     <system-out><![CDATA[buscarEventosPorFiltro_PorTitulo
 ]]></system-out>
   </testcase>
-  <testcase name="testEliminarEvento_Exitoso" classname="itson.implementaciones.EventosDAOTest" time="0.039">
+  <testcase name="testEliminarEvento_Exitoso" classname="itson.implementaciones.EventosDAOTest" time="0.079">
     <system-out><![CDATA[eliminarEvento_Exitoso
 ]]></system-out>
   </testcase>
-  <testcase name="testGuardarEventoConActividades_Exitoso" classname="itson.implementaciones.EventosDAOTest" time="0.124">
+  <testcase name="testGuardarEventoConActividades_Exitoso" classname="itson.implementaciones.EventosDAOTest" time="0.108">
     <system-out><![CDATA[guardarEventoConActividades_Exitoso
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarEventosPorFiltro_Combinado_TituloYModalidad" classname="itson.implementaciones.EventosDAOTest" time="0.12">
+  <testcase name="testBuscarEventosPorFiltro_Combinado_TituloYModalidad" classname="itson.implementaciones.EventosDAOTest" time="0.114">
     <system-out><![CDATA[buscarEventosPorFiltro_Combinado_TituloYModalidad
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarEventoPorId_NoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.005">
+  <testcase name="testBuscarEventoPorId_NoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.004">
     <system-out><![CDATA[buscarEventoPorId_NoEncontrado
 ]]></system-out>
   </testcase>
-  <testcase name="testBuscarEventosPorFiltro_PorFechaFin" classname="itson.implementaciones.EventosDAOTest" time="0.12">
+  <testcase name="testModificarEvento_EventoNoEncontrado" classname="itson.implementaciones.EventosDAOTest" time="0.003">
+    <system-out><![CDATA[modificarEvento_EventoNoEncontrado
+]]></system-out>
+  </testcase>
+  <testcase name="testBuscarEventosPorFiltro_PorFechaFin" classname="itson.implementaciones.EventosDAOTest" time="0.163">
     <system-out><![CDATA[buscarEventosPorFiltro_PorFechaFin
 ]]></system-out>
   </testcase>

@@ -15,7 +15,7 @@ import itson.fabrica.ObjetosNegocioFactory;
 import itson.interfaces.IActividadesBO;
 import itson.interfaces.IEventosBO;
 import itson.modales.DlgAgregarActividad;
-import paneles.PnlActividad;
+import itson.paneles.PnlActividad;
 
 public class FrmActividades extends javax.swing.JFrame {
 

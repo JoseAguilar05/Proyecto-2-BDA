@@ -9,6 +9,7 @@ itson\entidades\Actividad.class
 itson\dtos\ActividadDTO.class
 itson\enums\TipoResponsable.class
 itson\dtos\EventoDTO.class
+itson\enums\EstadoActividad.class
 itson\entidades\Lugar.class
 itson\entidades\Participante.class
 itson\entidades\Evento.class
